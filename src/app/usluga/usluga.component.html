@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-sm-12 col-md-4 col-12">
+        <div class="container">
+            <h3 style="background:pink">Slanje zahteva</h3><br/>
+            <form [formGroup]="editForm" novalidate (ngSubmit)="onCreate()">
+                <div class="form-group">
+                    <label class="bg-white"> Vrsta:</label>
+                    <input type="text" formControlName="vrstaE"  class="form-control" readonly>
+                </div>
+                 <br/>
+                <div class="form-group">
+                    <label class="bg-white">Cena:</label>
+                    <input type="number" formControlName="cenaE"  class="form-control" readonly>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label class="bg-white">Datum:</label>
+                    <input type="date"  min="2021-08-24" class="form-control">
+                </div>
+                <br/>
+
+                  <div class="form-group">
+                    <label class="bg-white">Vreme:</label>
+                    <input type="time" 
+       name="meeting-time"  min="2021-08-24" class="form-control">
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-primary" [disabled]="createLoad" >
+                    <span *ngIf="createLoad"  placeholder="dd-MM-yyyy" class="spinner-border spinner-border-sm mr-1"></span>
+                     Pošalji zahtev
+                </button>
+            </form>
+        </div>
+
+    </div>
+    <div class=" col-sm-12 col-md-8 col-12" style="margin-top: 2%;">
+        <div class="container">
+        <table class="table" style="width: 100%; background-color: pink;">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" style="text-align: center;">ID Usluge
+                </th>
+                <th scope="col" style="text-align: center;">Vrsta</th>
+                <th scope="col" style="text-align: center;">Cena</th>
+                <th>Zakazivanje</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usl of usluge">
+                    <th scope="row" style="text-align: center;">{{usl.idUsluge}}</th>
+                    <td style="text-align: center;">{{usl.vrsta}}</td>
+                    <td style="text-align: center;">{{usl.cena}}</td>
+                    <td><button class="btn btn-success" (click)="selectOne(usl)">Zakaži</button></td>
+                
+                </tr>
+            </tbody>
+        </table>  
+    </div>
+ </div>

@@ -1,0 +1,110 @@
+<div class="row" style="margin-top: 3.7%;">
+    <div class="col-sm-4 col-12">
+   <div class="container"> 
+       <h3>Registracija</h3>
+       <form   class="sign-form" >
+           <div class="form-group">
+               <label>Ime:</label>
+               <input class="form-control" formControlName="name" type="text">
+           </div>
+           <div>
+             Ime je neophodno.
+         </div>
+         
+           <div class="form-group">
+            <label>Prezime:</label>
+            <input class="form-control" formControlName="surname" type="text">
+        </div>
+      
+         <div>
+             Prezime je neophodno.
+         </div>
+        <div class="form-group">
+            <label>E-mail adresa:</label>
+            <input class="form-control" formControlName="email" type="email">
+        </div>
+       
+         <div>
+             E-mail adresa je neophodna.
+         </div>
+      
+        <div class="form-group">
+         <label>Lozinka (1 veliko/malo slovo, broj, 6 min.):</label>
+         <div class="d-flex justify-content-between">
+                <input class="form-control" formControlName="password" [type]="hideR ? 'password' : 'text'" style="width: 88.5%;">
+            <span style="float: right; cursor: pointer;" (click)="toggleR()"></span>
+        </div>
+    </div>
+        
+         <div >
+             Lozinka je neophodna.
+         </div>
+       
+       <div class="form-group">
+            <label>Adresa (Ulica, grad, ptt):</label>
+            <input class="form-control" formControlName="address" type="text">
+        </div>
+        
+         <div >
+             Adresa je neophodna.
+         </div>
+       
+        <div class="form-group">
+            <label>Telefon:</label>
+            <input class="form-control" formControlName="phoneNum" type="text">
+        </div>
+        <div>
+         <div>
+             Adresa je neophodna.
+         </div>
+         <button type="submit" class="btn btn-success" [disabled]="loading">
+            <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
+            Registruj se
+        </button>   
+       </div>
+      </form>
+      </div>
+</div>
+
+    <div class="col-sm-4 col-12">
+        <div style=" margin:auto; width:0; height: 100%; border: 0.5px solid black">
+        </div>
+    </div>
+    <div class="col">
+    <div class="container">
+        <h3>Prijava</h3>
+        <form  >
+            <div class="form-group">
+                <label>E-mail adresa:</label>
+                <input class="form-control" formControlName="emailU" type="email">
+            </div>
+            <div *ngIf="loginForm.controls['emailU'].invalid && (loginForm.controls['emailU'].dirty
+             || loginForm.controls['emailU'].touched)" class="alert alert-danger">
+             <div *ngIf="loginForm.controls['emailU'].errors.required">
+                 E-mail adresa je neophodna.
+             </div>
+            </div>
+            <div class="form-group">
+                <label>Lozinka:</label>
+                <div class="d-flex justify-content-between">
+                <input class="form-control" formControlName="passwordU" [type]="hideL? 'password' : 'text'" style="width: 88.5%;">
+                <span style="float: right; cursor: pointer;" (click)="toggleL()"></span>
+            </div>
+        </div>
+            <div >
+                 Lozinka je neophodna.
+             </div>
+            <button type="submit" class="btn btn-primary" [disabled]="loginLoad">
+                <span *ngIf="loginLoad" class="spinner-border spinner-border-sm mr-1"></span>
+                Prijavi se
+            </button>
+           
+        </form>
+    </div>
+
+    </div>
+</div>  
+        
+         
+
+

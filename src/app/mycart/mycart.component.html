@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-10 mx-auto my-2 text-center text-title">
+      <h1 class="text-capitalize font-weight-bold">
+        Moja <strong class="text-danger">Korpa</strong>
+      </h1>
+    </div>
+  </div>
+  <div>
+ <app-cart-columns></app-cart-columns>
+  </div>
+  <div *ngIf="items.length==0" class="container mt-5">
+    <div class="row">
+        <div class="col-10 mx-auto text-center text-title text-capitalize">
+          <h1>Korpa je trenutno prazna</h1>
+        </div>
+      </div>
+  </div>
+  <div *ngIf="items.length>0" class="container-fluid">
+    <div *ngFor="let item of items">
+    <app-cart-item [item]="item"></app-cart-item>
+   </div>
+  </div>
+  <div  *ngIf="items.length>0" class="container">
+    <div class="row">
+      <div class="col-10 mt-2 ml-sm-5 ml-md-auto col-sm-8 text-capitalize text-right">
+          <button
+            class="btn btn-danger text-uppercase mb-3 px-5"
+            type="button" (click)="emptyCart()">
+            isprazni korpu
+          </button>
+        <h5>
+          <span class="text-title  text-danger bg-white"> Korpa :</span>
+          <strong class=" text-danger bg-white"> {{totalCart}} RSD</strong>
+        </h5>
+       
+        <h5>
+          <span class="text-title  text-danger bg-white"> Ukupno :</span>
+          <strong class=" text-danger bg-white">  {{grand}} RSD </strong>
+        </h5>
+        <button
+        class="btn btn-primary text-uppercase mb-3 px-5"
+        type="button"
+        (click)="finishOrder()"
+        style="margin-top: 1%;"
+      >
+        završi kupovinu
+      </button>
+      </div>
+    </div>
+    
+  </div>

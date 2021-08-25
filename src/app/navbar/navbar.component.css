@@ -1,0 +1,18 @@
+.logo {
+    height: 80px;
+    width: 100px;
+}
+
+.text{
+    margin-right: auto;
+}
+
+.cart-container {
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 1%;
+    padding: 0 0.2% 0.1%; 
+    border-radius: 5%;
+    text-transform: capitalize;
+    color: red;
+}

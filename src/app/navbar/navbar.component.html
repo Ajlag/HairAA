@@ -1,0 +1,40 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <h5 class="my-0 mr-md-auto font-weight-normal">
+    <a class="navbar-item">
+        <img src="assets/images/logo.png" class="logo">
+      </a>
+  </h5>
+        <nav class="text"></nav>
+         
+        <a class="p-2 text-dark lead" routerLink="/profile">Profil</a>
+        <a class="p-2 text-dark lead" routerLink="/about">O nama</a>
+        <a class="p-2 text-dark lead" routerLink="/product-list">Proizvodi</a> 
+        <a class="p-2 text-dark lead" routerLink="/usluga">Usluge</a> 
+        <div class="d-inline-block" style="margin-right: 0.3%;">
+            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Osoblje</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem routerLink="/staff">Prikaz zahteva</button>
+              </div>
+            </div>
+
+            <div class="d-inline-block" style="margin-right: 0.3%;">
+              <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Admin</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem routerLink="/friseur">Frizeri</button>
+                <button ngbDropdownItem routerLink="/product">Artikli</button>
+
+                 <button ngbDropdownItem routerLink="/supplies">Dobavljanja</button>
+           <button ngbDropdownItem routerLink="/suppliers">Dobavljači</button>
+                </div>
+              </div>
+              
+        <div class="cart-container">
+        <a class="btn btn-outline-secondary" routerLink="/sign-up-in">Prijavi se</a>
+        </div>
+        
+        <div class="cart-container">
+       <a class="btn btn-outline-secondary" routerLink="/mycart" ><span class="mr-2"></span>
+       Moja korpa
+       </a>
+        </div>
+      </div>
