@@ -13,12 +13,14 @@
         <div>
           <span
             class="btn btn-black mx-1"
+                (click)="onDecrease(item)"
           >
             -
           </span>
-          <span class="btn btn-black mx-1">1</span>
+          <span class="btn btn-black mx-1">{{item.kolicina}}</span>
           <span
             class="btn btn-black mx-1"
+             (click)="onIncrease(item)"
             >
             +
           </span>
@@ -27,11 +29,9 @@
     </div>
     <div class="col-10 mx-auto col-lg-2 ">
       <div class="trash-icon">
-     <button
-            class="btn btn-outline-danger text-uppercase mb-3 px-5"
-            type="button">
+     <button class="btn btn-outline-danger text-uppercase mb-3 px-5" type="button" (click)="onRemove(item)">
           ukloni
-          </button>
+          </button>  
       </div>
     </div>
 

@@ -65,6 +65,43 @@ import { Product } from '../models/product';
                 });
               }
 
+              
+  increaseQty(item: CartItem) {
+    var index = this.cartItems.indexOf(item);
+    var selectedItem = this.cartItems[index];
+   
+    selectedItem.kolicina++;
+    selectedItem.dostupno--;
+    selectedItem.ukupno = selectedItem.cena*selectedItem.kolicina;
+    
+    this.ukupnoKorpa = 0;
+    this.cartItems.forEach(item => {
+     this.ukupnoKorpa += (item.cena * item.kolicina)
+
+  }); 
+     
+    this.saveCart(this.cartItems, this.ukupnoKorpa);
+}
+
+  decreaseQty(item: CartItem) {
+  var index = this.cartItems.indexOf(item);
+  var selectedItem = this.cartItems[index];
+  selectedItem.kolicina--;
+  selectedItem.ukupno = selectedItem.cena*selectedItem.kolicina;
+
+  if(selectedItem.kolicina<1) {
+    this.cartItems = this.cartItems.filter(item => item.id !== selectedItem.id);
+    this.ukupnoKorpa = 0;
+    this.cartItems.forEach(item => {
+     this.ukupnoKorpa += (item.cena * item.kolicina)});
+    this.saveCart(this.cartItems, this.ukupnoKorpa);
+  }
+  
+   this.ukupnoKorpa = 0;
+   this.cartItems.forEach(item => {
+   this.ukupnoKorpa += (item.cena * item.kolicina)
+    this.saveCart(this.cartItems, this.ukupnoKorpa);
+}); }
               removeFromCart(item: CartItem) {
                 var index = this.cartItems.indexOf(item);
                 var selectedItem = this.cartItems[index];

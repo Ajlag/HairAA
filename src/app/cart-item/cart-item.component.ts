@@ -11,6 +11,8 @@ import { CartItem } from '../models/cart-item';
 export class CartItemComponent implements OnInit {
 
   @Input() item: CartItem
+  @Output() increaseQty: EventEmitter<CartItem> = new EventEmitter();
+  @Output() decreaseQty: EventEmitter<CartItem> = new EventEmitter();
   @Output() removeFromCart: EventEmitter<CartItem> = new EventEmitter();
   faTrash=faTrash;
   constructor() { }
@@ -23,4 +25,11 @@ export class CartItemComponent implements OnInit {
     this.removeFromCart.emit(item);
   }
 
+  onIncrease(item) {
+    this.increaseQty.emit(item);
+  }
+
+  onDecrease(item) {
+    this.decreaseQty.emit(item);
+  }
 }
