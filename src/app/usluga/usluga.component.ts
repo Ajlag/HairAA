@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { odobriZahtevURL, zahtevURL } from '../config/api';
 import { Usluge } from '../models/usluge';
 import { Zahtev } from '../models/zahtev';
 import { UslugeService } from '../services/usluge.service';
@@ -99,4 +102,5 @@ onCreate() {
     );
     this.createLoad=false;
 }
+
 }

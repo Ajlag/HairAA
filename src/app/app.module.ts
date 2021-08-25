@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AboutComponent } from './about/about.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SignUpInComponent } from './sign-up-in/sign-up-in.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductItemComponent } from './product-item/product-item.component';
@@ -22,6 +23,7 @@ import { ProductComponent } from './product/product.component';
 import { StaffComponent } from './staff/staff.component';
 import { faFontAwesomeLogoFull } from '@fortawesome/free-solid-svg-icons';
 import { UslugaComponent } from './usluga/usluga.component';
+import { UslugeAdminComponent } from './usluge-admin/usluge-admin.component';
 
 @NgModule({
   declarations: [
@@ -41,11 +43,13 @@ import { UslugaComponent } from './usluga/usluga.component';
     FriseurComponent,
     ProductComponent,
     StaffComponent,
-    UslugaComponent
+    UslugaComponent,
+    UslugeAdminComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgbModule,
   //  NgModule,
     // FontAwesomeModule,
    HttpClientModule,

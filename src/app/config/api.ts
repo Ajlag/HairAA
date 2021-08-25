@@ -25,3 +25,7 @@ export const suppliesURL = `${baseURL}/supplies/supplies.php`
 export const newSupplyURL = `${baseURL}/supplies/new_supply.php`
 export const updateSupplyURL = `${baseURL}/supplies/update_supply.php`
 export const deleteSupplyURL = `${baseURL}/supplies/delete_supply.php`
+export const uslugeIdURL = `${baseURL}/usluge/usluge_id.php`
+export const izmenaUslugeURL = `${baseURL}/usluge/izmeni_uslugu.php`
+export const brisanjeUslugeURL = `${baseURL}/usluge/izbrisi_uslugu.php`
+export const novaUslugaURL = `${baseURL}/usluge/nove_usluge.php`

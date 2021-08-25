@@ -13,7 +13,7 @@ import { FriseurComponent } from './friseur/friseur.component';
 import { ProductComponent } from './product/product.component';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { UslugaComponent } from './usluga/usluga.component';
-
+import { UslugeAdminComponent } from './usluge-admin/usluge-admin.component';
 
 const routes: Routes = [
     {path: 'sign-up-in', component: SignUpInComponent},
@@ -29,7 +29,7 @@ const routes: Routes = [
     {path: 'friseur', component: FriseurComponent},
     {path: 'product', component: ProductComponent},
     {path: 'usluga', component: UslugaComponent},
-    
+    {path: 'uslugeAdmin', component:UslugeAdminComponent}
 ];
 
 @NgModule({
