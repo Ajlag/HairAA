@@ -7,7 +7,7 @@ import { odobriZahtevURL, zahtevURL } from '../config/api';
 import { Usluge } from '../models/usluge';
 import { Zahtev } from '../models/zahtev';
 import { UslugeService } from '../services/usluge.service';
-
+import { Time } from '@angular/common';
 @Component({
   selector: 'app-usluga',
   templateUrl: './usluga.component.html',
@@ -27,6 +27,9 @@ export class UslugaComponent implements OnInit {
   createLoad:boolean = false;
   subC =  false;
 
+  model;
+
+  title="addBootstrap";
   constructor(private us: UslugeService, protected router: Router,private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -49,7 +52,8 @@ initCreateForm() {
   this.createForm = this.fb.group({
      vrstaE: ['', Validators.required],
      cenaE: ['', Validators.required],
-     vremeE:['',Validators.required]
+     datumE:['',Validators.required],
+    vremeE:['',Validators.required]
   })
 }
 

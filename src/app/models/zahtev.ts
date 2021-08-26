@@ -4,10 +4,10 @@ export class Zahtev {
     idZahteva: number;
     vrsta: string;
     datum: Date;
-    vreme: Time;
+    vreme: string;
     status: string;
 
-    constructor(idZahteva:number,vrsta:string,datum: Date,vreme:Time,status:string) {
+    constructor(idZahteva:number,vrsta:string,datum: Date,vreme:string,status:string) {
         this.idZahteva =idZahteva;
         this.vrsta=vrsta;
         this.vreme=vreme;

@@ -5,27 +5,32 @@
             <form [formGroup]="editForm" novalidate (ngSubmit)="onCreate()">
                 <div class="form-group">
                     <label class="bg-white"> Vrsta:</label>
-                    <input type="text" formControlName="vrstaE"  class="form-control" readonly>
+                    <input type="text" formControlName="vrstaE"  class="form-control" >
                 </div>
                  <br/>
                 <div class="form-group">
                     <label class="bg-white">Cena:</label>
-                    <input type="number" formControlName="cenaE"  class="form-control" readonly>
+                    <input type="number" formControlName="cenaE"  class="form-control" >
                 </div>
                 <br/>
                 <div class="form-group">
                     <label class="bg-white">Datum:</label>
-                    <input class="form-control" formControlName="datumE" type="text" >
+                   <input class="form-control col-2" placeholder="yyyy-mm-dd"
+             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"  formControlName="datum" readonly>
+              <div class="input-group-append">
+        <button class="btn btn-secondary calendar" (click)="d.toggle()" type="button">Kalendar</button>
+      </div>
                 </div>
                 <br/>
 
                   <div class="form-group">
                     <label class="bg-white">Vreme:</label>
-                    <input type="time" min="2021-08-24"  formControlName="vremeE" class="form-control">
+                    <input type="text" formControlName="vreme"
+       name="meeting-time"  min="2021-08-24" class="form-control">
                 </div>
                 <br/>
-                <button type="submit" class="btn btn-primary" [disabled]="createLoad" >
-                    <span *ngIf="createLoad"  placeholder="dd-MM-yyyy" class="spinner-border spinner-border-sm mr-1"></span>
+                <button type="submit" class="btn btn-primary" >
+                    <span  placeholder="dd-MM-yyyy" class="spinner-border spinner-border-sm mr-1"></span>
                      Pošalji zahtev
                 </button>
             </form>
@@ -41,8 +46,6 @@
                 </th>
                 <th scope="col" style="text-align: center;">Vrsta</th>
                 <th scope="col" style="text-align: center;">Cena</th>
-                <th scope="col" style="text-align: center;">Datum</th>
-                <th scope="col" style="text-align: center;">Vreme</th>
                 <th>Zakazivanje</th>
               </tr>
             </thead>
@@ -51,8 +54,6 @@
                     <th scope="row" style="text-align: center;">{{usl.idUsluge}}</th>
                     <td style="text-align: center;">{{usl.vrsta}}</td>
                     <td style="text-align: center;">{{usl.cena}}</td>
-                    <!-- <td style="text-align: center;">{{usl.datum}}</td>
-                    <td style="text-align: center;">{{usl.vreme}}</td> -->
                     <td><button class="btn btn-success" (click)="selectOne(usl)">Zakaži</button></td>
                 
                 </tr>
