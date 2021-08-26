@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartItem } from '../models/cart-item';
+import { AdminService } from '../services/admin.service';
 import { CartService } from '../services/cart.services';
+import { UserService } from '../services/user.service';
+import { Order } from '../models/order';
+import { OrderItem } from '../models/orderItem';
 
 
 
@@ -15,7 +19,7 @@ export class MycartComponent implements OnInit {
   items: CartItem[] = [];
   ukupnoKorpa: number = 0;
 
-  constructor(private cartService: CartService, protected router: Router) { }
+  constructor(private cartService: CartService, protected router: Router,private userService: UserService, private adm: AdminService) { }
 
   ngOnInit(): void {
     this.ukupnoKorpa = this.cartService.getTotal();
@@ -57,51 +61,37 @@ export class MycartComponent implements OnInit {
 
   }
 
+  checkAuth() {
+    return this.userService.checkAuth();
+  }
   
-  // finishOrder() {
-  //   if(this.checkAuth()==false) {
-  //     alert("Molimo Vas da se prijavite ili registrujte kako bi završili porudžbinu.")
-  //   }
-  //   else {
-  //     let discount = 0;
-  //     let orderId = 1;
-  //     let finalPrice = this.grand;
-  //     let cond = 0;
-  //     let user = this.userService.currentUser();
-  //     let dateNow = new Date().toLocaleString();
-  //     let ccode = this.code;
-  //     let coupon = this.coupons.find(c => c.codeCoupon == ccode);
-  //     if(coupon!==undefined) {
-  //       discount = coupon.discount;
-  //       cond = coupon.cond;
-  //       if(this.totalCart>=cond)  {
-  //       finalPrice = finalPrice - (this.totalCart*(discount/100));
-  //       }
-  //       else 
-  //       finalPrice = this.grand;
-  //     }
-  //     else {
-  //       finalPrice = this.grand;
-  //     }
-  //    let order = new Order(0,dateNow,finalPrice,user,ccode);
-  //    this.userService.makeOrder(order).subscribe(res => {
-  //      console.log(res)
-  //      orderId = res.idOrder;
-  //      this.items.forEach(item => {
-  //        let oitem = new OrderItem(orderId,item.productId,item.qty,item.totalItem);
-  //        this.userService.makeOrderItem(oitem).subscribe(res => console.log("success item"));
-  //      }),
-  //      setTimeout(() => {
-  //       this.userService.getOrderInfo(orderId,user).subscribe(res => console.log(res));
-  //       this.emptyCart();
-  //      },750)
-  //     // this.userService.getOrderInfo(orderId,user).subscribe(res => console.log(res));
-  //      //this.emptyCart();
-  //      }
-  //    );
-  //    alert("Hvala Vam na kupovini. Uskoro ćemo Vas kontaktirati putem mejla.");
-  //    this.router.navigate(['/profile']);
+  finishOrder() {
+    // if(this.checkAuth()==false) {
+    //   alert("Molimo Vas da se prijavite ili registrujte kako bi završili porudžbinu.")
+    // }
+    // else {
+      let discount = 0;
+      let IdPorudzbine = 1;
+      let ukupnaCena = this.ukupnoKorpa;
+      let user = this.userService.currentUser();
+      let datumP = new Date().toLocaleString();
 
-  //   }
-  // }
+     let order = new Order(0,datumP,ukupnaCena,user);
+     this.userService.makeOrder(order).subscribe(res => {
+       console.log(res)
+       IdPorudzbine = res.IdPorudzbine;
+       this.items.forEach(item => {
+         let oitem = new OrderItem(IdPorudzbine,item.IdProizvoda,item.dostupno,item.cena);
+         this.userService.makeOrderItem(oitem).subscribe(res => console.log("success item"));
+       }),
+       setTimeout(() => {
+        this.userService.getOrderInfo(IdPorudzbine,user).subscribe(res => console.log(res));
+        this.emptyCart();
+       },750)
+       }
+     );
+     alert("Hvala Vam na kupovini. Uskoro ćemo Vas kontaktirati putem mejla.");
+     this.router.navigate(['/profile']);
+    // }
+  }
 }

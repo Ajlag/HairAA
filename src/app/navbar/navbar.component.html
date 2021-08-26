@@ -16,7 +16,7 @@
             <button class="btn btn-outline-danger" id="dropdownBasic1" ngbDropdownToggle>Osoblje</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
               <button ngbDropdownItem routerLink="/staff">Prikaz zahteva</button>
-              <button ngbDropdownItem>Odjavi se</button>
+              <button style="color: #007bff;" (click)="logoutAdmin()" ngbDropdownItem>Odjavi se</button>
               </div>
             </div>
 
@@ -28,7 +28,7 @@
                 <button ngbDropdownItem routerLink="/uslugeAdmin">Usluge</button>
                 <button ngbDropdownItem routerLink="/supplies">Dobavljanja</button>
                 <button ngbDropdownItem routerLink="/suppliers">Dobavljači</button>
-                <button ngbDropdownItem>Odjavi se</button>
+                <button style="color: #007bff;" (click)="logoutAdmin()" ngbDropdownItem>Odjavi se</button>
             
                 </div>
               </div>

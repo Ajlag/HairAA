@@ -18,9 +18,10 @@ export class SignUpInComponent implements OnInit {
   hideR = true;
   hideL = true;
   fHide = true;
+
   signupForm : FormGroup;
   loginForm : FormGroup;
-  resetForm: FormGroup;
+ 
   submitted = false;
   loginTry = false;
   loading = false;
@@ -48,7 +49,10 @@ export class SignUpInComponent implements OnInit {
     this.fHide = !this.fHide;
   }
 
-  
+  getAuth() {
+    return this.us.checkAuth();
+  }
+
   get scs() {
     return this.signupForm.controls;
   }
@@ -72,8 +76,8 @@ export class SignUpInComponent implements OnInit {
  
  createLoginForm() {
   this.loginForm = this.fb.group({
-    email: ['', Validators.required],
-    lozinka: ['', Validators.required]
+    emailU: ['', Validators.required],
+    lozinkaU: ['', Validators.required]
   })
 }
 onSubmit() {
@@ -101,6 +105,9 @@ onSubmit() {
  },err => console.log(JSON.stringify(err)))
   this.loading=false;
 }
+refresh(): void {
+  window.location.reload();
+}
 
 onLogin() {
   this.loginTry=true;
@@ -108,17 +115,14 @@ onLogin() {
     return;
   }
   this.loginLoad=true;
-  this.oldCustomer = new Customer(this.logInfo.email.value,this.logInfo.lozinka.value);
+  this.oldCustomer = new Customer(this.logInfo.emailU.value,this.logInfo.lozinkaU.value);
   this.us.login(this.oldCustomer).subscribe((data:any) =>  {console.log(JSON.stringify(data))
-    //  let token = CryptoJS.AES.encrypt(data.email,'2608981412').toString();
-    //  let codeA = data.admin;
-    //  console.log(token);
-     // let authToken = CryptoJS.AES.decrypt(token,'2608981412').toString(CryptoJS.enc.Utf8);
-      //console.log(authToken);
       sessionStorage.setItem('user',data.email);
       sessionStorage.setItem('codeA',JSON.stringify(data.admin));
-    //  sessionStorage.setItem('admin',JSON.stringify(data.admin))
+      sessionStorage.setItem('admin',JSON.stringify(data.admin))
+      this.getAuth();
       this.router.navigate(['/']);
+      this.refresh();
   },
   err => console.log(JSON.stringify(err)));
   this.loginLoad = false;
