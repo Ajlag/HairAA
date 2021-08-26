@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http'
-//import {FontAwesomeModule} from '@fortawesome/angular-fontawesome'
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome'
 import {ReactiveFormsModule, FormsModule} from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,7 +51,7 @@ import { UslugeAdminComponent } from './usluge-admin/usluge-admin.component';
     AppRoutingModule,
     NgbModule,
   //  NgModule,
-    // FontAwesomeModule,
+   FontAwesomeModule,
    HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
