@@ -1,19 +1,21 @@
 export class User {
-    email: string;
+    //idMusterije: number;
     ime: string;
     prezime: string;
-    telefon: string;
-    adresa: string;
+    email: string;
     lozinka: string;
-   tip: number;
+    adresa: string;
+    telefon: string; 
+    admin: number;
 
-    constructor(email:string,ime:string, prezime:string,telefon:string,adresa:string,lozinka:string,tip:number) {
-       this.email=email;
+    constructor(ime:string, prezime:string,email:string,lozinka:string,adresa:string,telefon:string,admin:number) {
+      // this.idMusterije = idMusterije;   
        this.ime=ime;
        this.prezime=prezime;
-       this.telefon=telefon;
+       this.email=email;
+       this.lozinka=lozinka;
        this.adresa=adresa;
        this.telefon=telefon;
-       this.tip = tip;
+       this.admin = admin;
     }
 }

@@ -34,7 +34,7 @@
               </div>
               
         <div class="cart-container">
-        <a class="btn btn-outline-secondary" routerLink="/sign-up-in">Prijavi se</a>
+        <a *ngIf="!getAuth()" class="btn btn-outline-secondary" routerLink="/sign-up-in">Prijavi se</a>
         </div>
         
         <div class="cart-container">

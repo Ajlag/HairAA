@@ -6,6 +6,7 @@ import {catchError,tap} from 'rxjs/operators';
 import { User } from '../models/user';
 import { signupURL, loginURL,myProfileURL, updateMeURL } from '../config/api';
 import { MessageService } from './message.service';
+import { Customer } from '../models/customer';
 
 
 
@@ -30,6 +31,11 @@ register(user: User):Observable<User>{
       catchError(this.handleError))
 }
 
+login(customer: Customer):Observable<any> {
+  return this.http.post<Customer>(loginURL,JSON.stringify(customer)).pipe(
+   tap(_=> this.log('login success!')),
+     catchError(this.handleError))
+}
 
 getMe(email: string) :Observable<User>{
     return this.http.get<any>(`${myProfileURL}?email=${email}`).pipe(
@@ -38,14 +44,12 @@ getMe(email: string) :Observable<User>{
     )
 }
 
-
 editMe(data) {
   return this.http.post(updateMeURL, JSON.stringify(data)).pipe(
     tap(_=> this.log('my update success!')),
     catchError(this.handleError)
   )
 }
-
 
 private log(message: string) {
   this.msg.add(`User service: ${message}`);

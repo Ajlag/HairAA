@@ -1,6 +1,6 @@
 export const baseURL = 'https://hairsalonaa.000webhostapp.com/api';
-export const signupURL = `${baseURL}/user/signup`
-export const loginURL = `${baseURL}/user/login`
+export const signupURL = `${baseURL}/user/signup.php`
+export const loginURL = `${baseURL}/user/login.php`
 export const myProfileURL=`${baseURL}/user/my_profile`
 export const updateMeURL=`${baseURL}/user/update_me`
 export const newProductURL = `${baseURL}/products/new_product.php`
