@@ -2,10 +2,10 @@
     <div class="col-sm-12 col-md-4 col-12">
         <div class="container">
             <h3 style="background:pink">Slanje zahteva</h3><br/>
-            <form [formGroup]="editForm" novalidate (ngSubmit)="onCreate()">
+            <form [formGroup]="editForm" novalidate (ngSubmit)="onUpdate()">
                 <div class="form-group">
                     <label class="bg-white"> Vrsta:</label>
-                    <input type="text" formControlName="vrstaE"  class="form-control" readonly>
+                    <input type="text" formControlName="vrstaE"  class="form-control" readonly >
                 </div>
                  <br/>
                 <div class="form-group">
@@ -15,8 +15,7 @@
                 <br/>
                 <div class="form-group">
                     <label class="bg-white">Datum:</label>
-                   <input class="form-control col-2" placeholder="yyyy-mm-dd"
-             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"  formControlName="datum" readonly>
+                   <input class="form-control" type="text" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"  formControlName="datumE" readonly>
               <div class="input-group-append">
         <button class="btn btn-secondary calendar" (click)="d.toggle()" type="button">Kalendar</button>
       </div>
@@ -25,12 +24,12 @@
 
                   <div class="form-group">
                     <label class="bg-white">Vreme:</label>
-                    <input type="text" formControlName="vreme"
+                    <input type="text" formControlName="vremeE"
        name="meeting-time"  min="2021-08-24" class="form-control">
                 </div>
                 <br/>
                 <button type="submit" class="btn btn-primary" >
-                    <span  placeholder="dd-MM-yyyy" class="spinner-border spinner-border-sm mr-1"></span>
+                    <span *ngIf="editLoad"  placeholder="dd-MM-yyyy" class="spinner-border spinner-border-sm mr-1"></span>
                      Pošalji zahtev
                 </button>
             </form>
