@@ -15,16 +15,13 @@
                 <br/>
                 <div class="form-group">
                     <label class="bg-white">Datum:</label>
-                   <input class="form-control" type="text" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"  formControlName="datumE" readonly>
-              <div class="input-group-append">
-        <button class="btn btn-secondary calendar" (click)="d.toggle()" type="button">Kalendar</button>
-      </div>
+                   <input class="form-control" type="date"  formControlName="datumE" >
                 </div>
                 <br/>
 
                   <div class="form-group">
                     <label class="bg-white">Vreme:</label>
-                    <input type="text" formControlName="vremeE"
+                    <input type="time" formControlName="vremeE"
        name="meeting-time"  min="2021-08-24" class="form-control">
                 </div>
                 <br/>
