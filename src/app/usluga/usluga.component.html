@@ -5,12 +5,12 @@
             <form [formGroup]="editForm" novalidate (ngSubmit)="onCreate()">
                 <div class="form-group">
                     <label class="bg-white"> Vrsta:</label>
-                    <input type="text" formControlName="vrstaE"  class="form-control" >
+                    <input type="text" formControlName="vrstaE"  class="form-control" readonly>
                 </div>
                  <br/>
                 <div class="form-group">
                     <label class="bg-white">Cena:</label>
-                    <input type="number" formControlName="cenaE"  class="form-control" >
+                    <input type="number" formControlName="cenaE"  class="form-control" readonly>
                 </div>
                 <br/>
                 <div class="form-group">
