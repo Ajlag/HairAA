@@ -26,9 +26,17 @@ export class NavbarComponent implements OnInit {
     return this.userService.checkAuth();
   }
 
+  // getAuthF() {
+  //   return this.userService.checkAuthF();
+  // }
+
   isAdmin() {
     return this.userService.checkAdmin();
   }
+  
+  // isOsoblje() {
+  //   return this.userService.checkOsoblje();
+  // }
 
   logoutAdmin() {
     this.userService.logout();

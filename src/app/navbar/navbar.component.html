@@ -6,13 +6,13 @@
   </h5>
         <nav class="text">
          
-        <a class="p-2 text-dark lead" routerLink="/profile">Profil</a>
+        <a *ngIf="getAuth() && !isAdmin()" class="p-2 text-dark lead" routerLink="/profile">Moj profil</a>
         <a class="p-2 text-dark lead" routerLink="/about">O nama</a>
         <a class="p-2 text-dark lead" routerLink="/product-list">Proizvodi</a> 
         <a class="p-2 text-dark lead" routerLink="/usluga">Usluge</a> 
         </nav>
-
-        <div class="d-inline-block" ngbDropdown style="margin-right: 0.3%;">
+<!-- *ngIf="isOsoblje()" -->
+        <div  class="d-inline-block" ngbDropdown style="margin-right: 0.3%;">
             <button class="btn btn-outline-danger" id="dropdownBasic1" ngbDropdownToggle>Osoblje</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
               <button ngbDropdownItem routerLink="/staff">Prikaz zahteva</button>
@@ -20,7 +20,7 @@
               </div>
             </div>
 
-            <div ngbDropdown class="d-inline-block"  style="margin-right: 0.3%;">
+            <div  ngbDropdown class="d-inline-block"  style="margin-right: 0.3%;">
               <button class="btn btn-outline-danger" id="dropdownBasic2" ngbDropdownToggle>Admin</button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
                 <button ngbDropdownItem routerLink="/friseur">Frizeri</button>

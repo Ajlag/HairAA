@@ -19,10 +19,15 @@ export class UserService {
 
   myUser = null;
   auth:boolean = false;
+ // auth1:boolean = false;
   admin:number = 0;
+ // frizer:number = 0;
   isAdmin:boolean=false;
+ // isOsoblje:boolean=false;
   myAdmin: string = null;
+ // myOsoblje: string = null;
   adminCode = 0;
+ // frizerCode = 2;
   defaultCode = 1;
 
   constructor(private http: HttpClient, private msg:MessageService, protected router: Router) { }
@@ -89,6 +94,7 @@ handleErrorLR() {
   alert(JSON.stringify("Korisnik ne postoji"));
   try {
     sessionStorage.removeItem('user');
+  //  sessionStorage.removeItem('frizer');
   }
   catch(e) {
     console.log(e);
@@ -100,7 +106,6 @@ handleErrorLR() {
 checkAuth() {
   try{
   let token = sessionStorage.getItem('user');
- // this.myUser = CryptoJS.AES.decrypt(token,'2608981412').toString(CryptoJS.enc.Utf8);
  this.myUser = token;
   }
   catch(e) {
@@ -115,12 +120,49 @@ checkAuth() {
   return this.auth;
 }
 
+// checkAuthF(){
+//   try{
+//   let token1 = sessionStorage.getItem('frizer');
+//   this.myOsoblje =token1;
+//    }
+//    catch(e) {
+//      this.myOsoblje = null;
+//    }
+//    if(this.myOsoblje!==null) {
+//      this.auth1 = false;
+//    }
+//    else {
+//      this.auth1 = true;
+//    }
+//    return this.auth1;
+// }
+
+// checkOsoblje(){
+//   try{
+//   let token1 = sessionStorage.getItem('frizer');
+//   this.frizerCode = JSON.parse(sessionStorage.getItem('codeB'));
+//   this.myOsoblje = token1;
+//   }
+//   catch(e) {
+//     this.myOsoblje =null;
+//   }
+//   // todo GetAdmins metoda PHP da lista sve admine //
+//  if(this.frizerCode == this.defaultCode){
+//     this.isOsoblje = false;
+//   }
+//   else{
+//   this.isOsoblje = true;
+//   }
+//   return this.isOsoblje;
+// }
+
 checkAdmin() {
   try{
-  let token = sessionStorage.getItem('user');
+  let token = sessionStorage.getItem('user'); 
   this.adminCode = JSON.parse(sessionStorage.getItem('codeA'));
  // this.myAdmin = CryptoJS.AES.decrypt(token,'2608981412').toString(CryptoJS.enc.Utf8);
  this.myAdmin = token;
+ 
   }
   catch(e) {
     this.myAdmin = null;
@@ -138,12 +180,15 @@ checkAdmin() {
 logout() {
   sessionStorage.removeItem('user');
   sessionStorage.removeItem('codeA');
+//  sessionStorage.removeItem('codeB');
 }
 
 currentUser() {
   let token = sessionStorage.getItem('user');
+ // let token1 = sessionStorage.getItem('frizer');
   //let me = CryptoJS.AES.decrypt(token,'2608981412').toString(CryptoJS.enc.Utf8);
   return token;
+ // return token1;
 }
 
 }
