@@ -9,8 +9,7 @@ import { MessageService } from './message.service';
 import { Customer } from '../models/customer';
 import { Order } from '../models/order';
 import { OrderItem } from '../models/orderItem';
-
-
+import { Friseur } from '../models/friseur';
 
 @Injectable({
   providedIn: 'root'
@@ -19,15 +18,10 @@ export class UserService {
 
   myUser = null;
   auth:boolean = false;
- // auth1:boolean = false;
   admin:number = 0;
- // frizer:number = 0;
   isAdmin:boolean=false;
- // isOsoblje:boolean=false;
   myAdmin: string = null;
- // myOsoblje: string = null;
   adminCode = 0;
- // frizerCode = 2;
   defaultCode = 1;
 
   constructor(private http: HttpClient, private msg:MessageService, protected router: Router) { }
@@ -38,6 +32,11 @@ register(user: User):Observable<User>{
       catchError(this.handleError))
 }
 
+loginFrizer(friseur: Friseur):Observable<any> {
+  return this.http.post<Customer>(loginURL,JSON.stringify(friseur)).pipe(
+   tap(_=> this.log('login success!')),
+     catchError(this.handleError))
+}
 login(customer: Customer):Observable<any> {
   return this.http.post<Customer>(loginURL,JSON.stringify(customer)).pipe(
    tap(_=> this.log('login success!')),
@@ -128,42 +127,6 @@ checkAuth() {
   return this.auth;
 }
 
-// checkAuthF(){
-//   try{
-//   let token1 = sessionStorage.getItem('frizer');
-//   this.myOsoblje =token1;
-//    }
-//    catch(e) {
-//      this.myOsoblje = null;
-//    }
-//    if(this.myOsoblje!==null) {
-//      this.auth1 = false;
-//    }
-//    else {
-//      this.auth1 = true;
-//    }
-//    return this.auth1;
-// }
-
-// checkOsoblje(){
-//   try{
-//   let token1 = sessionStorage.getItem('frizer');
-//   this.frizerCode = JSON.parse(sessionStorage.getItem('codeB'));
-//   this.myOsoblje = token1;
-//   }
-//   catch(e) {
-//     this.myOsoblje =null;
-//   }
-//   // todo GetAdmins metoda PHP da lista sve admine //
-//  if(this.frizerCode == this.defaultCode){
-//     this.isOsoblje = false;
-//   }
-//   else{
-//   this.isOsoblje = true;
-//   }
-//   return this.isOsoblje;
-// }
-
 checkAdmin() {
   try{
   let token = sessionStorage.getItem('user'); 
@@ -181,6 +144,28 @@ checkAdmin() {
   }
   else{
   this.isAdmin=false;
+  }
+  return this.isAdmin;
+}
+
+
+checkMusterija() {
+  try{
+  let token = sessionStorage.getItem('user'); 
+  this.adminCode = JSON.parse(sessionStorage.getItem('codeA'));
+ // this.myAdmin = CryptoJS.AES.decrypt(token,'2608981412').toString(CryptoJS.enc.Utf8);
+ this.myAdmin = token;
+ 
+  }
+  catch(e) {
+    this.myAdmin = null;
+  }
+  // todo GetAdmins metoda PHP da lista sve admine //
+  if(this.adminCode == this.defaultCode) {
+  this.isAdmin=false;
+  }
+  else{
+  this.isAdmin=true;
   }
   return this.isAdmin;
 }
