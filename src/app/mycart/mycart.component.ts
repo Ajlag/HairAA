@@ -90,8 +90,8 @@ export class MycartComponent implements OnInit {
        },750)
        }
      );
-     alert("Hvala Vam na kupovini. Uskoro ćemo Vas kontaktirati putem mejla.");
-     this.router.navigate(['/profile']);
+     alert("Hvala Vam na kupovini.");
+     this.router.navigate(['/about']);
     // }
   }
 }
