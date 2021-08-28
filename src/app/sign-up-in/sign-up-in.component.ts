@@ -119,10 +119,8 @@ onLogin() {
   this.us.login(this.oldCustomer).subscribe((data:any) =>  {console.log(JSON.stringify(data))
       sessionStorage.setItem('user',data.email);
       sessionStorage.setItem('codeA',JSON.stringify(data.admin));
-      sessionStorage.setItem('admin',JSON.stringify(data.admin))
-      this.getAuth();
-      this.router.navigate(['/']);
-      this.refresh();
+      //sessionStorage.setItem('admin',JSON.stringify(data.admin))
+      this.router.navigate(['/about']);
   },
   err => console.log(JSON.stringify(err)));
   this.loginLoad = false;

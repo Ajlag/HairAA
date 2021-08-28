@@ -5,7 +5,7 @@ import { Usluge } from '../models/usluge';
 import { MessageService } from './message.service';
 import {of} from 'rxjs'
 import {catchError,tap} from 'rxjs/operators'
-import { brisanjeUslugeURL, izbrisiZahtevURL, izmenaUslugeURL, newZahtevURL, novaUslugaURL, odobriZahtevURL, uslugeIdURL, uslugeURL, zahtevURL } from '../config/api';
+import { brisanjeUslugeURL, izbrisiZahtevURL, izmenaUslugeURL, mojiZahteviURL, newZahtevURL, novaUslugaURL, odobriZahtevURL, uslugeIdURL, uslugeURL, zahtevURL } from '../config/api';
 import { Zahtev } from '../models/zahtev';
 
 @Injectable({
@@ -32,6 +32,21 @@ export class UslugeService {
   }
 
 
+  
+getByEmailUsluge(email: string) :Observable<Usluge>{
+  return this.http.get<any>(`${mojiZahteviURL}?email=${email}`).pipe(
+    tap(_=> this.log('me success!')),
+    catchError(this.handleErrorTwo)
+  )
+}
+
+
+getOdobreneZahteve() : Observable<Zahtev[]> {
+  return this.http.get<Zahtev[]>(mojiZahteviURL).pipe(
+    tap(_=> this.log('fetched products')),
+    catchError(this.handleError<Zahtev[]>('getOdobreneZahteve',[]))
+  );
+}
   
 createUslugu(usluga: Usluge): Observable<Usluge> {
   return this.http.post<Usluge>(novaUslugaURL,JSON.stringify(usluga)).pipe(

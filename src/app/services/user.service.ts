@@ -51,6 +51,14 @@ getMe(email: string) :Observable<User>{
     )
 }
 
+
+getMyOrders(email: string) :Observable<any>{
+  return this.http.get(`${myOrdersURL}?email=${email}`).pipe(
+    tap(_=> this.log('my orders success!')),
+    catchError(this.handleErrorLR)
+  )
+}
+
 editMe(data) {
   return this.http.post(updateMeURL, JSON.stringify(data)).pipe(
     tap(_=> this.log('my update success!')),

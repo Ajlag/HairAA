@@ -1,8 +1,8 @@
 export const baseURL = 'https://hairsalonaa.000webhostapp.com/api';
 export const signupURL = `${baseURL}/user/signup.php`
 export const loginURL = `${baseURL}/user/login.php`
-export const myProfileURL=`${baseURL}/user/my_profile`
-export const updateMeURL=`${baseURL}/user/update_me`
+export const myProfileURL=`${baseURL}user/my_profile.php`
+export const updateMeURL=`${baseURL}/user/update_me.php`
 export const newProductURL = `${baseURL}/products/new_product.php`
 export const updateProductURL = `${baseURL}/products/update_products.php`
 export const deleteProductURL = `${baseURL}/products/delete_products.php`
@@ -34,3 +34,4 @@ export const orderItemURL = `${baseURL}/porudzbine/newItem.php`
 export const orderInfoURL = `${baseURL}/porudzbine/orderInfo.php`
 export const myOrdersURL = `${baseURL}/porudzbine/my_orders.php`
 export const deleteOrderURL = `${baseURL}/porudzbine/delete_order.php`
+export const mojiZahteviURL=`${baseURL}/zahtevi/mojiZahtevi.php`

@@ -15,7 +15,6 @@ import { ProductItemComponent } from './product-item/product-item.component';
 import { MycartComponent } from './mycart/mycart.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { CartColumnsComponent } from './cart-columns/cart-columns.component';
-import { ProfileComponent } from './profile/profile.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { SuppliesComponent } from './supplies/supplies.component';
 import { FriseurComponent } from './friseur/friseur.component';
@@ -24,6 +23,7 @@ import { StaffComponent } from './staff/staff.component';
 import { faFontAwesomeLogoFull } from '@fortawesome/free-solid-svg-icons';
 import { UslugaComponent } from './usluga/usluga.component';
 import { UslugeAdminComponent } from './usluge-admin/usluge-admin.component';
+import { MojiZahteviComponent } from './moji-zahtevi/moji-zahtevi.component';
 
 @NgModule({
   declarations: [
@@ -37,14 +37,14 @@ import { UslugeAdminComponent } from './usluge-admin/usluge-admin.component';
     MycartComponent,
     CartItemComponent,
     CartColumnsComponent,
-    ProfileComponent,
     SuppliersComponent,
     SuppliesComponent,
     FriseurComponent,
     ProductComponent,
     StaffComponent,
     UslugaComponent,
-    UslugeAdminComponent
+    UslugeAdminComponent,
+    MojiZahteviComponent
   ],
   imports: [
     BrowserModule,
