@@ -13,7 +13,7 @@
        
         <div  class="d-inline-block" ngbDropdown style="margin-right: 0.3%;">
           <button *ngIf="getAuth() && !isAdmin()" class="btn btn-outline-secondary"  (click)="logoutAdmin()"  >Odjavi se</button>
-            <button *ngIf="!isAdmin() && !isMusterija()"  class="btn btn-outline-danger" id="dropdownBasic1" ngbDropdownToggle>Frizer</button>
+            <button  class="btn btn-outline-danger" id="dropdownBasic1" ngbDropdownToggle>Frizer</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
               <button ngbDropdownItem routerLink="/staff">Prikaz zahteva</button>
               <button style="color: #007bff;" (click)="logoutAdmin()" ngbDropdownItem>Odjavi se</button>
