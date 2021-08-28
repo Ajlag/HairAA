@@ -30,11 +30,22 @@
                 </div>
                    <div  *ngIf="createForm.controls['email'].invalid && (createForm.controls['email'].dirty
                  || createForm.controls['email'].touched)" class="alert alert-danger">
-                 <div *ngIf="createForm.controls['email'].errors.required">
-              
+                 <div *ngIf="createForm.controls['email'].errors.required"> 
                      Email je neophodna.
                  </div>
                  </div><br/>
+                 <div class="form-group">
+                    <label class="bg-white">Lozinka:</label>
+                    <div class="d-flex justify-content-between">
+                    <input  class="form-control" formControlName="lozinka"  id="lozinkaU">
+                </div>
+            </div>
+                <div *ngIf="createForm.controls['lozinka'].invalid && (createForm.controls['lozinka'].dirty
+                 || createForm.controls['lozinka'].touched)" class="alert alert-danger">
+                 <div *ngIf="createForm.controls['lozinka'].errors.required">
+                     Lozinka je neophodna.
+                 </div>
+                </div><br/>
                 <div class="form-group">
                     <label class="bg-white">Telefon:</label>
                     <input class="form-control" formControlName="telefon" type="text">
@@ -100,6 +111,18 @@
                  Email je neophodna.
              </div>
              </div><br/>
+             <div class="form-group">
+                <label class="bg-white">Lozinka:</label>
+                <div class="d-flex justify-content-between">
+                <input  class="form-control" formControlName="lozinkaE" id="lozinkaU">
+            </div>
+        </div>
+            <div *ngIf="editForm.controls['lozinkaE'].invalid && (editForm.controls['lozinkaE'].dirty
+             || editForm.controls['lozinkaE'].touched)" class="alert alert-danger">
+             <div *ngIf="editForm.controls['lozinkaE'].errors.required">
+                 Lozinka je neophodna.
+             </div>
+            </div><br/>
             <div class="form-group">
                 <label class="bg-white">Telefon:</label>
                 <input class="form-control" formControlName="telefonE" type="text">
@@ -137,6 +160,7 @@
                 <th scope="col" style="text-align: center;">Ime</th>
                 <th scope="col" style="text-align: center;">Prezime</th>
                 <th scope="col" style="text-align: center;">Email</th>
+                <!-- <th scope="col" style="text-align: center;">Lozinka</th> -->
                 <th scope="col" style="text-align: center;">Telefon</th>
                 <th scope="col" style="text-align: center;">Plata</th>
                 <th scope="col" style="text-align: center;">Staž</th>

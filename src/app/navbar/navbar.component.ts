@@ -33,6 +33,10 @@ export class NavbarComponent implements OnInit {
   isAdmin() {
     return this.userService.checkAdmin();
   }
+
+  isMusterija(){
+    return this.userService.checkMusterija();
+  }
   
   // isOsoblje() {
   //   return this.userService.checkOsoblje();

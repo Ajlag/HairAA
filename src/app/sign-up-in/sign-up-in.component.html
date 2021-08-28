@@ -96,8 +96,8 @@
             <div class="form-group">
                 <label>Lozinka:</label>
                 <div class="d-flex justify-content-between">
-                <input class="form-control" formControlName="lozinkaU" [type]="hideL? 'lozinka' : 'text'" style="width: 88.5%;" id="lozinkaU">
-                <span style="float: right; cursor: pointer;" (click)="toggleL()"></span>
+                <input  class="form-control" formControlName="lozinkaU" [type]="hideL? 'password' : 'text'" style="width: 88.5%;" id="lozinkaU">
+                <span style="float: right; cursor: pointer;" (click)="toggleL()"><fa-icon [icon]="hideR? eye : eyeS" style="font-size: 120%;"></fa-icon></span>
             </div>
         </div>
             <div *ngIf="loginForm.controls['lozinkaU'].invalid && (loginForm.controls['lozinkaU'].dirty

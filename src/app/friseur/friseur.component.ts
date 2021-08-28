@@ -20,6 +20,9 @@ export class FriseurComponent implements OnInit {
   createForm: FormGroup;
   editForm: FormGroup;
   catForm: FormGroup;
+  hideR = true;
+  hideL = true;
+  fHide = true;
   editLoad: boolean = false;
   createLoad:boolean = false;
   catLoad = false;
@@ -42,6 +45,7 @@ export class FriseurComponent implements OnInit {
 initCreateForm() {
   this.createForm = this.fb.group({
      email: ['', Validators.required],
+     lozinka: ['', Validators.required],
      ime: ['', Validators.required],
      prezime: ['', Validators.required],
      telefon: ['', Validators.required],
@@ -55,6 +59,7 @@ initEditForm() {
   this.editForm = this.fb.group({
     idFrizera: ['', Validators.required],
     emailE: ['', Validators.required],
+    lozinkaE:['', Validators.required],
     imeE: ['', Validators.required],
     prezimeE: ['', Validators.required],
     telefonE: ['', Validators.required],
@@ -70,6 +75,7 @@ selectOne(friseur: Friseur) {
   this.editForm.patchValue({
     idFrizera: this.selectedOne.idFrizera,
     emailE: this.selectedOne.email,
+    lozinkaE: this.selectedOne.lozinka,
     imeE: this.selectedOne.ime,
     prezimeE: this.selectedOne.prezime,
     telefonE: this.selectedOne.telefon,
@@ -89,6 +95,17 @@ deleteOne(id: number) {
 }
 
 
+toggleR() {
+  this.hideR = !this.hideR;
+}
+
+toggleL() {
+  this.hideL = !this.hideL;
+}
+
+toggleF() {
+  this.fHide = !this.fHide;
+}
 get newsP() {
   return this.createForm.controls;
 }
@@ -114,9 +131,8 @@ onCreate() {
         this.createLoad = false;
         return;
       }
-  let friseur = new Friseur(0, this.newsP.email.value, this.newsP.ime.value, this.newsP.prezime.value,  Number(this.newsP.telefon.value),Number(this.newsP.plata.value), Number(this.newsP.staz.value));
+  let friseur = new Friseur(0, this.newsP.email.value, this.newsP.lozinka.value, this.newsP.ime.value, this.newsP.prezime.value,  Number(this.newsP.telefon.value),Number(this.newsP.plata.value), Number(this.newsP.staz.value));
     console.log(friseur);
-
     this.fs.createFriseur(friseur).subscribe(response => {alert(JSON.stringify("Frizer dodat!"))
     console.log(response)
     this.getFriseurs();
@@ -139,7 +155,7 @@ onUpdate() {
         this.editLoad = false;
         return;
       }
-    let friseur = new Friseur(this.editsP.idFrizera.value, this.editsP.emailE.value, this.editsP.imeE.value, this.editsP.prezimeE.value, Number(this.editsP.telefonE.value), Number(this.editsP.plataE.value),Number(this.editsP.stazE.value));
+    let friseur = new Friseur(this.editsP.idFrizera.value, this.editsP.emailE.value, this.newsP.lozinkaE.value, this.editsP.imeE.value, this.editsP.prezimeE.value, Number(this.editsP.telefonE.value), Number(this.editsP.plataE.value),Number(this.editsP.stazE.value));
 
     this.fs.updateFriseur(friseur).subscribe(response => {alert(JSON.stringify("Frizer izmenjen!"))
     console.log(response)
