@@ -154,7 +154,7 @@ checkMusterija() {
   let token = sessionStorage.getItem('user'); 
   this.adminCode = JSON.parse(sessionStorage.getItem('codeA'));
  // this.myAdmin = CryptoJS.AES.decrypt(token,'2608981412').toString(CryptoJS.enc.Utf8);
- this.myAdmin = token;
+  this.myAdmin = token;
  
   }
   catch(e) {

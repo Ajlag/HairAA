@@ -20,7 +20,7 @@ export class MojiZahteviComponent implements OnInit {
 
   ngOnInit(): void {
     this.getZahtevi();
-    this.getMe();
+   // this.getMe();
   }
 
   
