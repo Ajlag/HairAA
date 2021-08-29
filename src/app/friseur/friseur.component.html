@@ -111,18 +111,7 @@
                  Email je neophodna.
              </div>
              </div><br/>
-             <div class="form-group">
-                <label class="bg-white">Lozinka:</label>
-                <div class="d-flex justify-content-between">
-                <input  class="form-control" formControlName="lozinkaE" id="lozinkaU">
-            </div>
-        </div>
-            <div *ngIf="editForm.controls['lozinkaE'].invalid && (editForm.controls['lozinkaE'].dirty
-             || editForm.controls['lozinkaE'].touched)" class="alert alert-danger">
-             <div *ngIf="editForm.controls['lozinkaE'].errors.required">
-                 Lozinka je neophodna.
-             </div>
-            </div><br/>
+           <br/>
             <div class="form-group">
                 <label class="bg-white">Telefon:</label>
                 <input class="form-control" formControlName="telefonE" type="text">

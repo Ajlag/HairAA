@@ -59,7 +59,6 @@ initEditForm() {
   this.editForm = this.fb.group({
     idFrizera: ['', Validators.required],
     emailE: ['', Validators.required],
-    lozinkaE:['', Validators.required],
     imeE: ['', Validators.required],
     prezimeE: ['', Validators.required],
     telefonE: ['', Validators.required],
@@ -155,7 +154,7 @@ onUpdate() {
         this.editLoad = false;
         return;
       }
-    let friseur = new Friseur(this.editsP.idFrizera.value, this.editsP.emailE.value, this.newsP.lozinkaE.value, this.editsP.imeE.value, this.editsP.prezimeE.value, Number(this.editsP.telefonE.value), Number(this.editsP.plataE.value),Number(this.editsP.stazE.value));
+    let friseur = new Friseur(this.editsP.idFrizera.value, this.editsP.emailE.value,"0", this.editsP.imeE.value, this.editsP.prezimeE.value, Number(this.editsP.telefonE.value), Number(this.editsP.plataE.value),Number(this.editsP.stazE.value));
 
     this.fs.updateFriseur(friseur).subscribe(response => {alert(JSON.stringify("Frizer izmenjen!"))
     console.log(response)
