@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Friseur } from '../models/friseur';
+import { User } from '../models/user';
 import { FriseurService } from '../services/friseur.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-friseur',
@@ -28,7 +30,8 @@ export class FriseurComponent implements OnInit {
   catLoad = false;
   subCA = false;
   selectedOne: Friseur = null;
-  constructor(private fs:FriseurService, protected router: Router,private fb: FormBuilder) { }
+  newUser: User = null;
+  constructor(private fs:FriseurService, protected router: Router,private fb: FormBuilder, private us:UserService) { }
 
   ngOnInit(): void {
     this.initCreateForm();
@@ -74,7 +77,6 @@ selectOne(friseur: Friseur) {
   this.editForm.patchValue({
     idFrizera: this.selectedOne.idFrizera,
     emailE: this.selectedOne.email,
-    lozinkaE: this.selectedOne.lozinka,
     imeE: this.selectedOne.ime,
     prezimeE: this.selectedOne.prezime,
     telefonE: this.selectedOne.telefon,
@@ -130,7 +132,15 @@ onCreate() {
         this.createLoad = false;
         return;
       }
-  let friseur = new Friseur(0, this.newsP.email.value, this.newsP.lozinka.value, this.newsP.ime.value, this.newsP.prezime.value,  Number(this.newsP.telefon.value),Number(this.newsP.plata.value), Number(this.newsP.staz.value));
+      this.newUser = new User(this.newsP.ime.value,this.newsP.prezime.value,this.newsP.email.value,this.newsP.lozinka.value ,'0',this.newsP.telefon.value,2);
+      console.log(this.newUser);
+      this.us.register(this.newUser).subscribe(response => {alert(JSON.stringify("Korisnik dodat!"))
+      console.log(response)
+      this.getFriseurs();
+    }, err => console.log(err)
+      );
+
+    let friseur = new Friseur(0, this.newsP.email.value,this.newsP.ime.value, this.newsP.prezime.value,  Number(this.newsP.telefon.value),Number(this.newsP.plata.value), Number(this.newsP.staz.value));
     console.log(friseur);
     this.fs.createFriseur(friseur).subscribe(response => {alert(JSON.stringify("Frizer dodat!"))
     console.log(response)
@@ -154,7 +164,7 @@ onUpdate() {
         this.editLoad = false;
         return;
       }
-    let friseur = new Friseur(this.editsP.idFrizera.value, this.editsP.emailE.value,"0", this.editsP.imeE.value, this.editsP.prezimeE.value, Number(this.editsP.telefonE.value), Number(this.editsP.plataE.value),Number(this.editsP.stazE.value));
+    let friseur = new Friseur(this.editsP.idFrizera.value, this.editsP.emailE.value, this.editsP.imeE.value, this.editsP.prezimeE.value, Number(this.editsP.telefonE.value), Number(this.editsP.plataE.value),Number(this.editsP.stazE.value));
 
     this.fs.updateFriseur(friseur).subscribe(response => {alert(JSON.stringify("Frizer izmenjen!"))
     console.log(response)

@@ -4,7 +4,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import {catchError,tap} from 'rxjs/operators';
 import { User } from '../models/user';
-import {makeOrderURL, orderItemURL, orderInfoURL, myProfileURL, myOrdersURL, updateMeURL, signupURL,loginURL} from 'src/app/config/api'
+import {makeOrderURL, orderItemURL, orderInfoURL, myProfileURL, myOrdersURL, updateMeURL, signupURL,loginURL, newFriseurURL} from 'src/app/config/api'
 import { MessageService } from './message.service';
 import { Customer } from '../models/customer';
 import { Order } from '../models/order';
@@ -20,9 +20,10 @@ export class UserService {
   auth:boolean = false;
   admin:number = 0;
   isAdmin:boolean=false;
+  isFriseur:boolean=false;
+  isMusterija:boolean=false;
   myAdmin: string = null;
   adminCode = 0;
-  defaultCode = 1;
 
   constructor(private http: HttpClient, private msg:MessageService, protected router: Router) { }
 
@@ -32,11 +33,6 @@ register(user: User):Observable<User>{
       catchError(this.handleError))
 }
 
-loginFrizer(friseur: Friseur):Observable<any> {
-  return this.http.post<Customer>(loginURL,JSON.stringify(friseur)).pipe(
-   tap(_=> this.log('login success!')),
-     catchError(this.handleError))
-}
 login(customer: Customer):Observable<any> {
   return this.http.post<Customer>(loginURL,JSON.stringify(customer)).pipe(
    tap(_=> this.log('login success!')),
@@ -139,7 +135,7 @@ checkAdmin() {
     this.myAdmin = null;
   }
   // todo GetAdmins metoda PHP da lista sve admine //
-  if(this.adminCode == this.defaultCode) {
+  if(this.adminCode == 1) {
   this.isAdmin=true;
   }
   else{
@@ -161,13 +157,35 @@ checkMusterija() {
     this.myAdmin = null;
   }
   // todo GetAdmins metoda PHP da lista sve admine //
-  if(this.adminCode == this.defaultCode) {
-  this.isAdmin=false;
+  if(this.adminCode == 1) {
+  this.isMusterija=false;
   }
   else{
-  this.isAdmin=true;
+  this.isMusterija=true;
   }
-  return this.isAdmin;
+  return this.isMusterija;
+}
+
+
+checkFrizer() {
+  try{
+  let token = sessionStorage.getItem('user'); 
+  this.adminCode = JSON.parse(sessionStorage.getItem('codeA'));
+ // this.myAdmin = CryptoJS.AES.decrypt(token,'2608981412').toString(CryptoJS.enc.Utf8);
+  this.myAdmin = token;
+ 
+  }
+  catch(e) {
+    this.myAdmin = null;
+  }
+  // todo GetAdmins metoda PHP da lista sve admine //
+  if(this.adminCode ==2) {
+  this.isFriseur=true;
+  }
+  else{
+  this.isFriseur=false;
+  }
+  return this.isFriseur;
 }
 
 logout() {

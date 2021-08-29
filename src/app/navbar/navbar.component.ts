@@ -37,6 +37,10 @@ export class NavbarComponent implements OnInit {
   isMusterija(){
     return this.userService.checkMusterija();
   }
+
+  isFriseur(){
+    return this.userService.checkFrizer();
+  }
   
   // isOsoblje() {
   //   return this.userService.checkOsoblje();

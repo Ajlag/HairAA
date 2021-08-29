@@ -6,14 +6,14 @@
   </h5>
         <nav class="text">
         <a class="p-2 text-dark lead" routerLink="/about">O nama</a>
-        <a  *ngIf="getAuth() && !isAdmin() " class="p-2 text-dark lead" routerLink="/product-list">Proizvodi</a> 
-        <a  *ngIf="getAuth() && !isAdmin() "  class="p-2 text-dark lead" routerLink="/usluga">Usluge</a> 
-        <a *ngIf="getAuth() && !isAdmin() " class="p-2 text-dark lead" routerLink="/mojiZahtevi">Moji zahtevi</a>
+        <a  *ngIf="isMusterija() && getAuth() && !isFriseur()" class="p-2 text-dark lead" routerLink="/product-list">Proizvodi</a> 
+        <a  *ngIf="isMusterija()  && getAuth() && !isFriseur()"  class="p-2 text-dark lead" routerLink="/usluga">Usluge</a> 
+        <a *ngIf="isMusterija()  && getAuth() && !isFriseur()" class="p-2 text-dark lead" routerLink="/mojiZahtevi">Moji zahtevi</a>
         </nav>
        
         <div  class="d-inline-block" ngbDropdown style="margin-right: 0.3%;">
-          <button *ngIf="getAuth() && !isAdmin()" class="btn btn-outline-secondary"  (click)="logoutAdmin()"  >Odjavi se</button>
-            <button  class="btn btn-outline-danger" id="dropdownBasic1" ngbDropdownToggle>Frizer</button>
+          <button *ngIf="isMusterija()  && getAuth() && !isFriseur()" class="btn btn-outline-secondary"  (click)="logoutAdmin()"  >Odjavi se</button>
+            <button  *ngIf="isFriseur()" class="btn btn-outline-danger" id="dropdownBasic1" ngbDropdownToggle>Frizer</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
               <button ngbDropdownItem routerLink="/staff">Prikaz zahteva</button>
               <button style="color: #007bff;" (click)="logoutAdmin()" ngbDropdownItem>Odjavi se</button>
