@@ -2,7 +2,7 @@
     <div class="card" *ngFor="let zah of zahtevi">
         <div class="card-body d-flex justify-content-between flex-md-row">
          <p class="card-text pt-3"><strong>{{zah.idZahteva}}</strong></p>
-         <p class="card-text pt-3"><strong>Ime i prezime musterije</strong></p>
+         <p class="card-text pt-3"><strong>{{zah.email}}</strong></p>
             <p class="card-text pt-3"><strong>{{zah.vrsta}}</strong></p>
             <p class="card-text pt-3"><strong>{{zah.datum}}</strong></p>
             <p class="card-text pt-3"><strong>{{zah.vreme}}</strong></p>

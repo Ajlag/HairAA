@@ -50,9 +50,10 @@ export class UslugaComponent implements OnInit {
 
 initEditForm() {
   this.editForm = this.fb.group({
-      vrstaE: ['', Validators.required],
-     cenaE: ['', Validators.required],
-     datumE:['',Validators.required],
+    email: ['', Validators.required],
+    vrstaE: ['', Validators.required],
+    cenaE: ['', Validators.required],
+    datumE:['',Validators.required],
     vremeE:['',Validators.required]
   })
 }
@@ -84,7 +85,7 @@ onUpdate() {
         this.editLoad = false;
         return;
       }
-    let product = new Zahtev(0, this.editsP.vrstaE.value, this.editsP.datumE.value, this.editsP.vremeE.value,'cekanje');
+    let product = new Zahtev(0, this.editsP.email.value,this.editsP.vrstaE.value, this.editsP.datumE.value, this.editsP.vremeE.value,'cekanje');
 
     this.us.createZahtev(product).subscribe(response => {alert(JSON.stringify("Zahtev poslat!"))
     console.log(response)
