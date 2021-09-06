@@ -24,7 +24,6 @@ export class UslugaComponent implements OnInit {
   editForm: FormGroup;
   selectedOne: Usluge = null;
   editLoad: boolean = false;
-
   subE = false;
   model;
 
