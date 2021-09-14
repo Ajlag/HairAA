@@ -28,7 +28,6 @@ user: User=null;
   editForm: FormGroup;
   selectedOne: Usluge = null;
   editLoad: boolean = false;
-prosao: boolean;
   subE = false;
   model;
 
