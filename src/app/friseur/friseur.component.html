@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-sm-12 col-md-4 col-12">
-        <div class="container">
-            <h3 style="background-color: pink;">Dodavanje frizera</h3>
+        <div class="container"  style="background:rgba(255,255,255,0.6)">
+            <h3 style="text-align:center;padding-top:5%;font-weight:bold">Dodavanje frizera</h3>
             <form [formGroup]="createForm" novalidate (ngSubmit)="onCreate()">
                 <div class="form-group">
-                    <label class="bg-white">Ime:</label>
+                    <label>Ime:</label>
                     <input class="form-control" formControlName="ime" type="text">
                 </div>
                   <div  *ngIf="createForm.controls['ime'].invalid && (createForm.controls['ime'].dirty
@@ -14,7 +14,7 @@
                  </div>               
                  </div><br/>
                 <div class="form-group">
-                    <label class="bg-white">Prezime:</label>
+                    <label>Prezime:</label>
                     <input class="form-control" formControlName="prezime" type="text">
                 </div>
                <div  *ngIf="createForm.controls['prezime'].invalid && (createForm.controls['prezime'].dirty
@@ -25,7 +25,7 @@
                  </div>
                  </div><br/>
                 <div class="form-group">
-                    <label class="bg-white">Email:</label>
+                    <label>Email:</label>
                     <input class="form-control" formControlName="email" type="text">
                 </div>
                    <div  *ngIf="createForm.controls['email'].invalid && (createForm.controls['email'].dirty
@@ -35,7 +35,7 @@
                  </div>
                  </div><br/>
                  <div class="form-group">
-                    <label class="bg-white">Lozinka:</label>
+                    <label>Lozinka:</label>
                     <div class="d-flex justify-content-between">
                     <input  class="form-control" formControlName="lozinka"  id="lozinkaU">
                 </div>
@@ -47,7 +47,7 @@
                  </div>
                 </div><br/>
                 <div class="form-group">
-                    <label class="bg-white">Telefon:</label>
+                    <label>Telefon:</label>
                     <input class="form-control" formControlName="telefon" type="text">
                 </div>
               <div  *ngIf="createForm.controls['telefon'].invalid && (createForm.controls['telefon'].dirty
@@ -57,11 +57,11 @@
                 </div>
                 </div><br/>
                 <div class="form-group">
-                    <label class="bg-white">Plata:</label>
+                    <label>Plata:</label>
                     <input class="form-control" formControlName="plata" type="number">
                 </div><br/>
                 <div class="form-group">
-                    <label class="bg-white">Staž:</label>
+                    <label>Staž:</label>
                     <input class="form-control" formControlName="staz" type="number">
                 </div><br/>
                 <button type="submit" class="btn btn-primary" [disabled]="createLoad">
@@ -71,15 +71,15 @@
             </form>
      </div>
      <br/>
-     <div class="container">
-        <h3 style="background-color: pink;">Izmena frizera</h3>
+     <div class="container"  style="background:rgba(255,255,255,0.6)">
+        <h3 style="text-align:center;padding-top:5%;font-weight:bold">Izmena frizera</h3>
         <form [formGroup]="editForm" novalidate (ngSubmit)="onUpdate()">
             <div class="form-group">
-                <label class="bg-white">ID:</label>
+                <label>ID:</label>
                 <input class="form-control" formControlName="idFrizera" type="number" readonly>
             </div><br/>
             <div class="form-group">
-                <label class="bg-white">Ime:</label>
+                <label>Ime:</label>
                 <input class="form-control" formControlName="imeE" type="text">
             </div>
             <div *ngIf="editForm.controls['imeE'].invalid && (editForm.controls['imeE'].dirty
@@ -90,7 +90,7 @@
              </div>
              </div><br/>
             <div class="form-group">
-                <label class="bg-white">Prezime:</label>
+                <label>Prezime:</label>
                 <input class="form-control" formControlName="prezimeE" type="text">
             </div>
             <div *ngIf="editForm.controls['prezimeE'].invalid && (editForm.controls['prezimeE'].dirty
@@ -101,7 +101,7 @@
              </div>
              </div><br/>
             <div class="form-group">
-                <label class="bg-white">Email:</label>
+                <label>Email:</label>
                 <input class="form-control" formControlName="emailE" type="text">
             </div>
              <div *ngIf="editForm.controls['emailE'].invalid && (editForm.controls['emailE'].dirty
@@ -113,7 +113,7 @@
              </div><br/>
            <br/>
             <div class="form-group">
-                <label class="bg-white">Telefon:</label>
+                <label>Telefon:</label>
                 <input class="form-control" formControlName="telefonE" type="text">
             </div>
              <div *ngIf="editForm.controls['telefonE'].invalid && (editForm.controls['telefonE'].dirty
@@ -124,11 +124,11 @@
              </div>
              </div><br/>
             <div class="form-group">
-                <label class="bg-white">Plata:</label>
+                <label>Plata:</label>
                 <input class="form-control" formControlName="plataE" type="number">
             </div><br/>
             <div class="form-group">
-                <label class="bg-white">Staž:</label>
+                <label>Staž:</label>
                 <input class="form-control" formControlName="stazE" type="number">
             </div><br/>
             <button type="submit" class="btn btn-success">

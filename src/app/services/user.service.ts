@@ -4,7 +4,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import {catchError,tap} from 'rxjs/operators';
 import { User } from '../models/user';
-import {makeOrderURL, orderItemURL, orderInfoURL, myProfileURL, myOrdersURL, updateMeURL, signupURL,loginURL, newFriseurURL} from 'src/app/config/api'
+import {makeOrderURL, orderItemURL, orderInfoURL, myProfileURL, myOrdersURL, updateMeURL, signupURL,loginURL, newFriseurURL, porudzbine_uplataURL, mojiZahtevi_obukaURL, mojiZahteviURL} from 'src/app/config/api'
 import { MessageService } from './message.service';
 import { Customer } from '../models/customer';
 import { Order } from '../models/order';
@@ -82,6 +82,7 @@ getOrderInfo(IdPorudzbine: number, email: string) {
   )
 }
 
+
 private log(message: string) {
   this.msg.add(`User service: ${message}`);
 }
@@ -97,7 +98,19 @@ handleErrorLR() {
   alert(JSON.stringify("Korisnik ne postoji"));
   try {
     sessionStorage.removeItem('user');
-  //  sessionStorage.removeItem('frizer');
+  }
+  catch(e) {
+    console.log(e);
+  }
+  return throwError("Something went wrong");
+}
+
+
+handleErrorZahtev() {
+  console.log("Error! Somtehing went wrong. User does not exits");
+  
+  try {
+    alert(JSON.stringify("Nemate zahteva."));
   }
   catch(e) {
     console.log(e);
@@ -186,6 +199,21 @@ checkFrizer() {
   this.isFriseur=false;
   }
   return this.isFriseur;
+}
+
+getMyZahtev(email: string) :Observable<any>{
+  return this.http.get(`${mojiZahtevi_obukaURL}?email=${email}`).pipe(
+    tap(_=> this.log('Prikaz zahteva!')),
+    catchError(this.handleErrorZahtev)
+  )
+}
+
+
+getZahteviMusterije(email: string) :Observable<any>{
+  return this.http.get(`${mojiZahteviURL}?email=${email}`).pipe(
+    tap(_=> this.log('Prikaz zahteva!')),
+    catchError(this.handleErrorZahtev)
+  )
 }
 
 logout() {

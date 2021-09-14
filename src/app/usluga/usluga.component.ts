@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { odobriZahtevURL, zahtevURL } from '../config/api';
+import { User } from '../models/user';
 import { Usluge } from '../models/usluge';
 import { Zahtev } from '../models/zahtev';
+import { UserService } from '../services/user.service';
 import { UslugeService } from '../services/usluge.service';
 
 @Component({
@@ -17,23 +20,28 @@ export class UslugaComponent implements OnInit {
 
   usluga: Usluge;
   usluge: Usluge[]=[];
-
+  today: string;
+myForm:FormGroup;
   zahtev: Zahtev;
   zahtevi: Zahtev[]=[];
-
+user: User=null;
   editForm: FormGroup;
   selectedOne: Usluge = null;
   editLoad: boolean = false;
-
+prosao: boolean;
   subE = false;
   model;
 
+izabraniDatum: String = new Date().toDateString();
   title="addBootstrap";
-  constructor(private us: UslugeService, protected router: Router,private fb: FormBuilder) { }
+  constructor(private us: UslugeService, private userS:UserService, protected router: Router,private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.getUsluge();
     this.initEditForm();
+    this.today= new Date().toDateString();
+   // this.danas = this.transform(this.myDate, 'yyyy-MM-dd');
+  
   }
 
   getUsluge() {
@@ -47,10 +55,27 @@ export class UslugaComponent implements OnInit {
       this.zahtevi = zah})
   }
 
+  
+  setValues(e: string) {
+    this.myForm.patchValue({
+       email:e
+    })
+  }
+  getMe() {
+    let token = sessionStorage.getItem('user');
+    this.userS.getMe(token).subscribe(user => {console.log(JSON.stringify(user)); 
+       this.user = user;
+    this.setValues(user.email);
+    },err => {
+      console.log(err);
+      this.router.navigate(['/']);
+    })
+  }
 
 initEditForm() {
   this.editForm = this.fb.group({
     email: ['', Validators.required],
+    idUslugeE: ['', Validators.required],
     vrstaE: ['', Validators.required],
     cenaE: ['', Validators.required],
     datumE:['',Validators.required],
@@ -63,7 +88,7 @@ initEditForm() {
 selectOne(usluga: Usluge) {
   this.selectedOne = usluga;
   this.editForm.patchValue({
-    idUsluge: this.selectedOne.idUsluge,
+    idUslugeE: this.selectedOne.idUsluge,
     vrstaE: this.selectedOne.vrsta,
     cenaE: this.selectedOne.cena
   })
@@ -85,34 +110,14 @@ onUpdate() {
         this.editLoad = false;
         return;
       }
-    let product = new Zahtev(0, this.editsP.email.value,this.editsP.vrstaE.value, this.editsP.datumE.value, this.editsP.vremeE.value,'cekanje');
-
+    let product = new Zahtev(0, this.editsP.email.value,this.editsP.idUslugeE.value,this.editsP.vrstaE.value, this.editsP.datumE.value, this.editsP.vremeE.value,'cekanje');
     this.us.createZahtev(product).subscribe(response => {alert(JSON.stringify("Zahtev poslat!"))
     console.log(response)
     this.getZahtevi();
   }, err => console.log(err)
     );
     this.editLoad=false;
+
 }
-
-// onCreate() {
-  
-//       this.subC = true;
-//       this.createLoad = true;
-//       if(this.createForm.invalid) {
-//         alert("Nevalidna forma.");
-//         this.createLoad = false;
-//         return;
-//       }
-//   let zahtev = new Zahtev(0, this.newsP.vrsta.value,this.newsP.datum.value, this.newsP.vreme.value, this.newsP.status.value);
-//     console.log(zahtev);
-
-//     this.us.createZahtev(zahtev).subscribe(response => {alert(JSON.stringify("Zahtev poslat!"))
-//     console.log(response)
-//     this.getZahtevi();
-//   }, err => console.log(err)
-//     );
-//     this.createLoad=false;
-// }
 
 }

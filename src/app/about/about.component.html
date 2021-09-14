@@ -8,7 +8,16 @@
            ili jednostavno idete ulicom, ona je veoma upadljiva. Ona govori dosta o vama. 
            O tome da li ste uredni, kakav je vaš stil, volite li da eksperimentišete,
             pratite li trendove, da li ste dosledni sebi i svojim navikama…</b></p>
+
+            
       </div>
+
+      
+  <ul class="list-group center" style="width: 50%; margin-left:25%;">
+       <li class="list-group-item bg-success text-white">Dostupni kuponi: </li>
+         <li *ngFor="let c of kuponi" class="list-group-item">Kod kupona: <strong>{{c.kod_kupona}}</strong> - Popust: {{c.popust}}% - Cena (uslov): {{c.stanje}} RSD</li>
+    </ul>
+     
     </div>    
 </main>
 

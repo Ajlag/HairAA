@@ -24,6 +24,13 @@ import { faFontAwesomeLogoFull } from '@fortawesome/free-solid-svg-icons';
 import { UslugaComponent } from './usluga/usluga.component';
 import { UslugeAdminComponent } from './usluge-admin/usluge-admin.component';
 import { MojiZahteviComponent } from './moji-zahtevi/moji-zahtevi.component';
+import { KuponiComponent } from './kuponi/kuponi.component';
+import { UplateComponent } from './uplate/uplate.component';
+import { ObukaComponent } from './obuka/obuka.component';
+import { ZahtevObukaComponent } from './zahtev-obuka/zahtev-obuka.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AdminZahteviComponent } from './admin-zahtevi/admin-zahtevi.component';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +51,13 @@ import { MojiZahteviComponent } from './moji-zahtevi/moji-zahtevi.component';
     StaffComponent,
     UslugaComponent,
     UslugeAdminComponent,
-    MojiZahteviComponent
+    MojiZahteviComponent,
+    KuponiComponent,
+    UplateComponent,
+    ObukaComponent,
+    ZahtevObukaComponent,
+    ProfileComponent,
+    AdminZahteviComponent
   ],
   imports: [
     BrowserModule,

@@ -6,9 +6,11 @@
   </h5>
         <nav class="text">
         <a class="p-2 text-dark lead" routerLink="/about">O nama</a>
-        <a  *ngIf="isMusterija() && getAuth() && !isFriseur()" class="p-2 text-dark lead" routerLink="/product-list">Proizvodi</a> 
-        <a  *ngIf="isMusterija()  && getAuth() && !isFriseur()"  class="p-2 text-dark lead" routerLink="/usluga">Usluge</a> 
+        <a  *ngIf="isMusterija() && getAuth() " class="p-2 text-dark lead" routerLink="/product-list">Proizvodi</a> 
+        <a  *ngIf="isMusterija()  && getAuth()"  class="p-2 text-dark lead" routerLink="/usluga">Usluge</a> 
         <a *ngIf="isMusterija()  && getAuth() && !isFriseur()" class="p-2 text-dark lead" routerLink="/mojiZahtevi">Moji zahtevi</a>
+          <a *ngIf="isFriseur()  && getAuth() " class="p-2 text-dark lead" routerLink="/profil">Profil</a>
+       
         </nav>
        
         <div  class="d-inline-block" ngbDropdown style="margin-right: 0.3%;">
@@ -16,6 +18,8 @@
             <button  *ngIf="isFriseur()" class="btn btn-outline-danger" id="dropdownBasic1" ngbDropdownToggle>Frizer</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
               <button ngbDropdownItem routerLink="/staff">Prikaz zahteva</button>
+              <button ngbDropdownItem routerLink="/uplata">Uplate</button>
+              <button ngbDropdownItem routerLink="/zahtevObuka">Kursevi</button>
               <button style="color: #007bff;" (click)="logoutAdmin()" ngbDropdownItem>Odjavi se</button>
               </div>
             </div>
@@ -28,6 +32,10 @@
                 <button ngbDropdownItem routerLink="/uslugeAdmin">Usluge</button>
                 <button ngbDropdownItem routerLink="/supplies">Dobavljanja</button>
                 <button ngbDropdownItem routerLink="/suppliers">Dobavljači</button>
+                <button ngbDropdownItem routerLink="/kuponi">Kuponi</button>
+                 <button ngbDropdownItem routerLink="/obuka">Obuka</button>
+                  <button ngbDropdownItem routerLink="/admin-zahtevi">Zahtevi za Obuku</button>
+                 
                 <button style="color: #007bff;" (click)="logoutAdmin()" ngbDropdownItem>Odjavi se</button>
             
                 </div>

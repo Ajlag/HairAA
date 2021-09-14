@@ -5,8 +5,9 @@ import { Usluge } from '../models/usluge';
 import { MessageService } from './message.service';
 import {of} from 'rxjs'
 import {catchError,tap} from 'rxjs/operators'
-import { brisanjeUslugeURL, izbrisiZahtevURL, izmenaUslugeURL, mojiZahteviURL, newZahtevURL, novaUslugaURL, odobriZahtevURL, uslugeIdURL, uslugeURL, zahtevURL } from '../config/api';
+import { brisanjeUslugeURL, izbrisiZahtevURL, izmenaUslugeURL, mojiZahteviURL, newZahtevURL, novaUslugaURL, odobriZahtevURL, porudzbine_uplataURL, potvrdi_uplatuURL, uslugeIdURL, uslugeURL, zahtevURL } from '../config/api';
 import { Zahtev } from '../models/zahtev';
+import { Order } from '../models/order';
 
 @Injectable({
   providedIn: 'root'
@@ -22,15 +23,6 @@ export class UslugeService {
       catchError(this.handleError<Usluge[]>('getUsluge',[]))
     );
   }
-
-  
-  getByIdUsluge(id: number) : Observable<Usluge> {
-    return this.http.get<Usluge>(`${uslugeIdURL}?id=${id}`).pipe(
-      tap(_=> this.log('fetched usluge')),
-      catchError(this.handleErrorTwo)
-    );
-  }
-
 
   
 getByEmailUsluge(email: string) :Observable<Usluge>{
@@ -81,8 +73,6 @@ createZahtev(zahtev: Zahtev): Observable<Zahtev> {
 }
  
 
-
-
 odobriZahtev(zahtev: Zahtev) {
   return this.http.post<Zahtev>(odobriZahtevURL,JSON.stringify(zahtev)).pipe(
     tap(_=> this.log('Zahtev odobren!')),
@@ -97,6 +87,18 @@ izbrisiZahtev(zahtev: Zahtev) {
 }
 
 
+getPorudzbine() : Observable<Order[]> {
+  return this.http.get<Order[]>(porudzbine_uplataURL).pipe(
+    tap(_=> this.log('fetched orders')),
+    catchError(this.handleError<Order[]>('getPorudzbine',[]))
+  );
+}
+
+potvrdiUplatu(porudzbina: Order) {
+  return this.http.post<Order>(potvrdi_uplatuURL,JSON.stringify(porudzbina)).pipe(
+    tap(_=> this.log('Porudzbina uplacena!')),
+      catchError(this.handleErrorTwo))
+}
   private log(message: string) {
     this.msg.add(`Product service: ${message}`);
   }

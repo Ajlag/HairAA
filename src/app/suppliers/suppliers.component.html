@@ -1,11 +1,11 @@
 <div class="row">
 
     <div class="col-sm-12 col-md-4 col-12">
-    <div class="container">
-        <h3 style="background-color: pink;">Dodavanje dobavljača</h3>
+    <div class="container" style="background:rgba(255,255,255,0.6)">
+        <h3 style="text-align:center;padding-top:5%;font-weight:bold">Dodavanje dobavljača</h3>
         <form [formGroup]="createForm" novalidate (ngSubmit)="onCreate()">
             <div class="form-group"><br/>
-                <label style="background-color: pink;">Naziv:</label>
+                <label>Naziv:</label>
                 <input class="form-control" formControlName="naziv" type="text">
             </div>
             <div *ngIf="createForm.controls['naziv'].invalid && (createForm.controls['naziv'].dirty
@@ -15,7 +15,7 @@
              </div>
             </div><br/>
             <div class="form-group">
-                <label style="background-color: pink;">Lokacija dobavljača (ulica, grad):</label>
+                <label>Lokacija dobavljača (ulica, grad):</label>
                 <input class="form-control" formControlName="lokacija" type="text">
             </div>
             <div *ngIf="createForm.controls['lokacija'].invalid && (createForm.controls['lokacija'].dirty
@@ -31,15 +31,15 @@
         </form>
     </div>
     <br/>
-    <div class="container">
-        <h3 style="background-color: pink;">Izmena dobavljača</h3>
+    <div class="container" style="background:rgba(255,255,255,0.6)">
+        <h3 style="text-align:center;padding-top:5%;font-weight:bold">Izmena dobavljača</h3>
         <form [formGroup]="editForm" novalidate (ngSubmit)="onUpdate()">
             <div class="form-group"><br/>
-                <label style="background-color: pink;">ID dobavljača:</label>
+                <label>ID dobavljača:</label>
                 <input class="form-control" formControlName="IdDobavljacaE" type="number" readonly>
             </div><br/>
             <div class="form-group">
-                <label style="background-color: pink;">Naziv:</label>
+                <label>Naziv:</label>
                 <input class="form-control" formControlName="nazivE" type="text">
             </div>
             <div *ngIf="editForm.controls['nazivE'].invalid && (editForm.controls['nazivE'].dirty
@@ -49,7 +49,7 @@
              </div>
             </div><br/>
             <div class="form-group">
-                <label style="background-color: pink;">Lokacija dobavljača:</label>
+                <label>Lokacija dobavljača:</label>
                 <input class="form-control" formControlName="lokacijaE" type="text">
             </div>
             <div *ngIf="editForm.controls['lokacijaE'].invalid && (editForm.controls['lokacijaE'].dirty

@@ -1,32 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Obuka } from '../models/obuka';
 import { User } from '../models/user';
-import { Zahtev } from '../models/zahtev';
+import { zahteviFrizera } from '../models/zahteviFrizera';
+import { ZahtevObuka } from '../models/zahtevObuka';
+import { ObukaService } from '../services/obuka.services';
 import { UserService } from '../services/user.service';
-import { UslugeService } from '../services/usluge.service';
 
 @Component({
-  selector: 'app-moji-zahtevi',
-  templateUrl: './moji-zahtevi.component.html',
-  styleUrls: ['./moji-zahtevi.component.css']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
-export class MojiZahteviComponent implements OnInit {
-
-  constructor(private us:UslugeService,private userService:UserService, protected router: Router, private fb:FormBuilder) { }
-  user: User = null;
-  zahtev: Zahtev;
-  zahtevi: Zahtev[]=[];
-
+export class ProfileComponent implements OnInit {
 
   
   numOfOrders = 5;
   myForm: FormGroup;
   hiddens = [];
-  
+  user: User = null;
+
+  obuke:Obuka[]=[];
+  zahtevi:ZahtevObuka[]=[];
+  zahtevFrizer:zahteviFrizera[]=[];
   myLoad = false;
   mySub = false;
   
+
+  constructor(private userService:UserService,private obuka:ObukaService,protected router:Router, private fb:FormBuilder) { }
 
   ngOnInit(): void {
     if(!this.userService.checkAuth()) {
@@ -38,7 +40,6 @@ export class MojiZahteviComponent implements OnInit {
   }
 
   
-  
   initForm() {
     this.myForm = this.fb.group({
       email: ['', Validators.required],
@@ -48,8 +49,6 @@ export class MojiZahteviComponent implements OnInit {
       telefon: ['', Validators.required]
     })
   }
-
-  
   setValues(e: string, i:string, p: string,a:string,t:number) {
     this.myForm.patchValue({
        email:e,
@@ -59,19 +58,7 @@ export class MojiZahteviComponent implements OnInit {
        telefon: t,
     })
   }
-  getZahtevi() {
-    this.us.getOdobreneZahteve().subscribe((zah: Zahtev[]) => {
-      this.zahtevi = zah})
-  }
-
   
-  getMojeZahteve(){
-    let token = sessionStorage.getItem('user');
-    this.userService.getZahteviMusterije(token).subscribe((zah: Zahtev[])=>{
-      this.zahtevi=zah
-    })
-  }
-
   getMe() {
     let token = sessionStorage.getItem('user');
    // let me = CryptoJS.AES.decrypt(token,'2608981412').toString(CryptoJS.enc.Utf8);
@@ -85,6 +72,25 @@ export class MojiZahteviComponent implements OnInit {
   }
 
   
+  getZahtevi(){
+    this.obuka.getZahteviObuka().subscribe((zah: ZahtevObuka[])=>{
+      this.zahtevi=zah
+    })
+  }
+
+  getObuka(){
+    this.obuka.getObuku().subscribe((ob:Obuka[])=>{
+      this.obuke=ob;
+    })
+  }
+
+  getMojeZahteve(){
+    let token = sessionStorage.getItem('user');
+    this.userService.getMyZahtev(token).subscribe((zah: zahteviFrizera[])=>{
+      this.zahtevFrizer=zah
+    })
+  }
+
   toggleHidden(id) {
     let current = !this.hiddens.find(o => o.order == id).hidden;
     this.hiddens.find(o => o.order == id).hidden = current;

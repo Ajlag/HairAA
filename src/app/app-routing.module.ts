@@ -14,6 +14,12 @@ import { ProductItemComponent } from './product-item/product-item.component';
 import { UslugaComponent } from './usluga/usluga.component';
 import { UslugeAdminComponent } from './usluge-admin/usluge-admin.component';
 import { MojiZahteviComponent } from './moji-zahtevi/moji-zahtevi.component';
+import { KuponiComponent } from './kuponi/kuponi.component';
+import { UplateComponent } from './uplate/uplate.component';
+import { ObukaComponent } from './obuka/obuka.component';
+import { ZahtevObukaComponent } from './zahtev-obuka/zahtev-obuka.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AdminZahteviComponent } from './admin-zahtevi/admin-zahtevi.component';
 
 const routes: Routes = [
     {path: 'sign-up-in', component: SignUpInComponent},
@@ -29,7 +35,13 @@ const routes: Routes = [
     {path: 'product', component: ProductComponent},
     {path: 'usluga', component: UslugaComponent},
     {path: 'uslugeAdmin', component:UslugeAdminComponent},
-    {path: 'mojiZahtevi', component:MojiZahteviComponent}
+    {path: 'mojiZahtevi', component:MojiZahteviComponent},
+    {path: 'kuponi', component:KuponiComponent},
+    {path: 'uplata', component:UplateComponent},
+    {path: 'obuka', component:ObukaComponent},
+    {path: 'zahtevObuka', component:ZahtevObukaComponent},
+    {path: 'profil', component:ProfileComponent},
+    {path: 'admin-zahtevi', component:AdminZahteviComponent}
 ];
 
 @NgModule({

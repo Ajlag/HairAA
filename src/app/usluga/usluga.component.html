@@ -1,36 +1,40 @@
 <div class="row">
     <div class="col-sm-12 col-md-4 col-12">
-        <div class="container">
-            <h3 style="background:pink">Slanje zahteva</h3><br/>
+        <div class="container" style="background:rgba(255,255,255,0.6)">
+            <h3 style="text-align:center;padding-top:5%;font-weight:bold">Slanje zahteva</h3><br/>
             <form [formGroup]="editForm" novalidate (ngSubmit)="onUpdate()">
                 <div class="form-group">
-                    <label class="bg-white"> Email:</label>
-                    <input type="text" formControlName="email"  class="form-control"  >
+                    <label> Email:</label>
+                    <input type="text" class="form-control" formControlName="email"  >
                 </div>
                  <br/>
+                  <div class="form-group">
+                    <label> Id usluge:</label>
+                    <input type="text" formControlName="idUslugeE"  class="form-control" readonly >
+                </div>
+                <br/>
                 <div class="form-group">
-                    <label class="bg-white"> Vrsta:</label>
+                    <label> Vrsta:</label>
                     <input type="text" formControlName="vrstaE"  class="form-control" readonly >
                 </div>
                  <br/>
                 <div class="form-group">
-                    <label class="bg-white">Cena:</label>
+                    <label>Cena:</label>
                     <input type="number" formControlName="cenaE"  class="form-control" readonly>
                 </div>
                 <br/>
                 <div class="form-group">
-                    <label class="bg-white">Datum:</label>
-                   <input class="form-control" type="date"  formControlName="datumE" >
+                    <label>Datum:</label>
+                   <input  class="form-control" type="date" min="{{today|date:'yyyy-MM-dd'}}" formControlName="datumE" >
                 </div>
                 <br/>
 
                   <div class="form-group">
-                    <label class="bg-white">Vreme:</label>
-                    <input type="time" formControlName="vremeE"
-       name="meeting-time"  min="2021-08-24" class="form-control">
+                    <label>Vreme:</label>
+                    <input type="time" formControlName="vremeE"  class="form-control">
                 </div>
                 <br/>
-                <button type="submit" class="btn btn-primary" >
+                <button type="submit" class="btn btn-primary" style="margin-left:30%;margin-bottom:5%">
                     <span *ngIf="editLoad"  placeholder="dd-MM-yyyy" class="spinner-border spinner-border-sm mr-1"></span>
                      Pošalji zahtev
                 </button>

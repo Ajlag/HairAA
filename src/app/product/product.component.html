@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-sm-12 col-md-4 col-12">
-        <div class="container">
-            <h3 style="background:pink">Dodavanje proizvoda</h3>
+        <div class="container" style="background:rgba(255,255,255,0.6)">
+            <h3 style="text-align:center;padding-top:5%;font-weight:bold">Dodavanje proizvoda</h3>
             <form [formGroup]="createForm" novalidate (ngSubmit)="onCreate()">
                 <div class="form-group">
-                    <label class="bg-white"> Naziv:</label>
+                    <label> Naziv:</label>
                     <input type="text" formControlName="naziv" class="form-control">
                 </div>
            <div  *ngIf="createForm.controls['naziv'].invalid && (createForm.controls['naziv'].dirty
@@ -15,17 +15,17 @@
                  </div>
                  <br/>
                 <div class="form-group">
-                    <label class="bg-white">Cena:</label>
+                    <label>Cena:</label>
                     <input type="number" formControlName="cena"  class="form-control">
                 </div>
                 <br/>
                 <div class="form-group">
-                    <label class="bg-white">Dostupno:</label>
+                    <label>Dostupno:</label>
                     <input type="number" formControlName="dostupnost" class="form-control">
                 </div>
                 <br/>
                 <div class="form-group">
-                    <label class="bg-white"> ID dobavljača:</label>
+                    <label> ID dobavljača:</label>
                     <select class="form-control"  formControlName="IdDobavljaca">
                         
                        <option *ngFor="let s of suppliers" [value]="s.IdDobavljaca">{{s.IdDobavljaca}}</option> -->
@@ -40,16 +40,16 @@
         </div>
 
 <br/>
-        <div class="container">
-            <h3 style="background:pink;">Izmena proizvoda</h3>
+        <div class="container" style="background:rgba(255,255,255,0.6)">
+            <h3 style="text-align:center;padding-top:5%;font-weight:bold">Izmena proizvoda</h3>
             <form [formGroup]="editForm" novalidate (ngSubmit)="onUpdate()">
                 <div class="form-group">
-                    <label class="bg-white">ID proizvoda:</label>
+                    <label>ID proizvoda:</label>
                     <input type="number" formControlName="IdProizvoda" class="form-control" readonly>
                 </div>
                 <br/>
                 <div class="form-group">
-                    <label class="bg-white">Naziv:</label>
+                    <label>Naziv:</label>
                     <input type="text" formControlName="nazivE"  class="form-control">
                 </div>
                 <div *ngIf="editForm.controls['nazivE'].invalid && (editForm.controls['nazivE'].dirty
@@ -60,17 +60,17 @@
                  </div>
                  <br/>
                 <div class="form-group">
-                    <label class="bg-white">Cena:</label>
+                    <label>Cena:</label>
                     <input type="number" formControlName="cenaE" class="form-control">
                 </div>
                 <br/>
                 <div class="form-group">
-                    <label class="bg-white">Dostupno:</label>
+                    <label>Dostupno:</label>
                     <input type="number" formControlName="dostupnostE" class="form-control">
                 </div>
                 <br/>
                 <div class="form-group">
-                    <label class="bg-white">Snabdevač:</label>
+                    <label>Snabdevač:</label>
                     <select class="form-control">
                     <option *ngFor="let s of suppliers" [value]="s.IdDobavljaca">{{s.IdDobavljaca}}</option> 
                     </select>

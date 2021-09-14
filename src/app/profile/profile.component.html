@@ -64,19 +64,20 @@
               <tr>
                 <th scope="col" style="text-align: center;">ID Zahteva
                 </th>
-                 
+                 <th scope="col" style="text-align: center;">Id Kursa</th>
                   <th scope="col" style="text-align: center;">Status</th>
-                  <th scope="col" style="text-align: center;">ID Usluge kursa</th>
+                  <th scope="col" style="text-align: center;">Naziv kursa</th>
                 <th scope="col" style="text-align: center;">Datum</th>
                  <th scope="col" style="text-align: center;">Vreme</th>
           
               </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let zah of zahtevi" >
+                <tr *ngFor="let zah of zahtevFrizer" >
                     <th scope="row" style="text-align: center;">{{zah.idZahteva}}</th>
+                      <td style="text-align: center;">{{zah.idKursa}}</td>
                         <td style="text-align: center;">{{zah.status}}</td>
-                    <td style="text-align: center;">{{zah.idUsluge}}</td>
+                    <td style="text-align: center;">{{zah.naziv}}</td>
                     <td style="text-align: center;">{{zah.datum}}</td>
                     <td style="text-align: center;">{{zah.vreme}}</td>
                    

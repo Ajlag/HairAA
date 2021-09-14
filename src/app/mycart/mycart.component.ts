@@ -6,6 +6,7 @@ import { CartService } from '../services/cart.services';
 import { UserService } from '../services/user.service';
 import { Order } from '../models/order';
 import { OrderItem } from '../models/orderItem';
+import { Kuponi } from '../models/kuponi';
 
 
 
@@ -18,12 +19,16 @@ export class MycartComponent implements OnInit {
 
   items: CartItem[] = [];
   ukupnoKorpa: number = 0;
-
+  
+  kuponi: Kuponi[]=[];
+  code: number=1;
   constructor(private cartService: CartService, protected router: Router,private userService: UserService, private adm: AdminService) { }
+
 
   ngOnInit(): void {
     this.ukupnoKorpa = this.cartService.getTotal();
     this.getItems();
+    this.getKuponi();
   }
 
   
@@ -34,7 +39,9 @@ export class MycartComponent implements OnInit {
     this.items = this.cartService.getCartItems();
   }
   
-  
+  getKuponi(){
+    this.adm.getCoupons().subscribe(kuponi=>this.kuponi=kuponi.filter(c=>c.validan==1));
+  }
   increaseQty(item: CartItem) {
     this.cartService.increaseQty(item);
     this.getTotalCart();
@@ -65,18 +72,33 @@ export class MycartComponent implements OnInit {
     return this.userService.checkAuth();
   }
   
+
   finishOrder() {
-    // if(this.checkAuth()==false) {
-    //   alert("Molimo Vas da se prijavite ili registrujte kako bi završili porudžbinu.")
-    // }
-    // else {
+     if(this.checkAuth()==false) {
+       alert("Molimo Vas da se prijavite ili registrujte kako bi završili porudžbinu.")
+     }
+     else {
       let discount = 0;
       let IdPorudzbine = 1;
       let ukupnaCena = this.ukupnoKorpa;
       let user = this.userService.currentUser();
       let datumP = new Date().toLocaleString();
-
-     let order = new Order(0,datumP,ukupnaCena,user);
+let cond=0;
+let ccode=this.code;
+      let kupon=this.kuponi.find(c=>c.kod_kupona==ccode);
+      if(kupon!==undefined){
+        discount=kupon.popust;
+        cond=kupon.stanje;
+        if(this.ukupnoKorpa>=cond)  {
+          ukupnaCena = ukupnaCena - (this.ukupnoKorpa*(discount/100));
+      }
+      else
+         ukupnaCena=this.ukupnoKorpa;
+    }
+    else{
+      ukupnaCena=this.ukupnoKorpa;
+    }
+     let order = new Order(0,datumP,ukupnaCena,user,'ne');
      this.userService.makeOrder(order).subscribe(res => {
        console.log(res)
        IdPorudzbine = res.IdPorudzbine;
@@ -90,8 +112,14 @@ export class MycartComponent implements OnInit {
        },750)
        }
      );
-     alert("Hvala Vam na kupovini.");
-     this.router.navigate(['/about']);
-    // }
+     alert("Hvala Vam na kupovini.Za uplatu : "+ukupnaCena);
+     }
+  }
+
+  iskoristiKupon(){
+    
+  }
+  setCode(code:number){
+    this.code=code;
   }
 }

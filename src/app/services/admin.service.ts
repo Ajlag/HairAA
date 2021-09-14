@@ -1,6 +1,6 @@
 import { Suppliers } from "../models/supplier";
 import {HttpClient, HttpErrorResponse} from '@angular/common/http'
-import {suppliersURL, newSupplierURL, updateSupplierURL, deleteSupplierURL, suppliesURL, newSupplyURL, updateSupplyURL, deleteSupplyURL} from './../config/api';
+import {suppliersURL, newSupplierURL, updateSupplierURL, deleteSupplierURL, suppliesURL, newSupplyURL, updateSupplyURL, deleteSupplyURL, kuponiURL, novi_kuponiURL, izmeni_kuponURL, izbrisi_kuponURL} from './../config/api';
 import {of} from 'rxjs'
 import { Observable, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -10,6 +10,7 @@ import {productURL, productIdURL} from 'src/app/config/api'
 import {MessageService} from 'src/app/services/message.service'
 import { map } from 'rxjs/operators';
 import { Supplies } from "../models/supplies";
+import { Kuponi } from "../models/kuponi";
 
 
 @Injectable({
@@ -73,6 +74,31 @@ updateSupply(supply: Supplies) {
 deleteSupply(Id:number) {
   return this.http.get<Supplies>(`${deleteSupplyURL}?id=${Id}`).pipe(
     tap(_=> this.log('Supply deleted!')),
+      catchError(this.handleErrorTwo))
+}
+
+
+getCoupons(): Observable<Kuponi[]> {
+  return this.http.get<Kuponi[]>(kuponiURL).pipe(
+    tap(_=> this.log('fetched coupons')),
+    catchError(this.handleError<Kuponi[]>('getCoupnos',[]))
+  );
+}
+
+createCoupon(coupon: Kuponi):Observable<Kuponi> {
+  return this.http.post<Kuponi>(novi_kuponiURL,JSON.stringify(coupon)).pipe(
+    tap(_=> this.log('Coupon added!')),
+      catchError(this.handleErrorTwo))
+}
+updateCoupon(coupon: Kuponi){
+  return this.http.post<Kuponi>(izmeni_kuponURL,JSON.stringify(coupon)).pipe(
+    tap(_=> this.log('Coupon updated!')),
+      catchError(this.handleErrorTwo))
+}
+
+deleteCoupon(id: number):Observable<any>{
+  return this.http.get<Kuponi>(`${izbrisi_kuponURL}?id=${id}`).pipe(
+    tap(_=> this.log('Coupon deleted!')),
       catchError(this.handleErrorTwo))
 }
 
