@@ -43,7 +43,8 @@ getSuppliers() {
 
 initCreateForm() {
   this.createForm = this.fb.group({
-    IdDobavljaca: ['', Validators.required],
+    //IdDobavljaca: ['', Validators.required],
+    nazivD: ['',Validators.required],
     naziv: ['',Validators.required],
     kolicina: [1,Validators.required],
     datum: [this.today,Validators.required],
@@ -94,7 +95,8 @@ onCreate() {
         this.createLoad = false;
         return;
       }
-      let supply = new Supplies(0,this.news.IdDobavljaca.value,this.news.naziv.value,this.news.kolicina.value,this.news.datum.value,this.news.cena.value);
+
+      let supply = new Supplies(0,52,this.news.nazivD.value,this.news.naziv.value,this.news.kolicina.value,this.news.datum.value,this.news.cena.value);
       this.admn.createSupply(supply).subscribe(response => {alert(JSON.stringify("Novo snabdevanje dodato!"))
       console.log(response)
       this.getSupplies();
@@ -125,7 +127,7 @@ onUpdate() {
         this.editLoad = false;
         return;
       }
-    let supply = new Supplies(this.edtis.IdE.value,this.edtis.IdDobavljacaE.value,this.edtis.nazivE.value,this.edtis.kolicinaE.value,this.edtis.datumE.value,this.edtis.cenaE.value);
+    let supply = new Supplies(this.edtis.IdE.value,this.edtis.IdDobavljacaE.value,this.news.nazivD.value,this.edtis.nazivE.value,this.edtis.kolicinaE.value,this.edtis.datumE.value,this.edtis.cenaE.value);
     this.admn.updateSupply(supply).subscribe(response => {alert(JSON.stringify("Snabdevanje izmenjeno!"))
     console.log(response)
     this.getSupplies();

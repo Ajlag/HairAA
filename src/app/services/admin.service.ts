@@ -1,6 +1,6 @@
 import { Suppliers } from "../models/supplier";
 import {HttpClient, HttpErrorResponse} from '@angular/common/http'
-import {suppliersURL, newSupplierURL, updateSupplierURL, deleteSupplierURL, suppliesURL, newSupplyURL, updateSupplyURL, deleteSupplyURL, kuponiURL, novi_kuponiURL, izmeni_kuponURL, izbrisi_kuponURL} from './../config/api';
+import {suppliersURL, newSupplierURL, updateSupplierURL, deleteSupplierURL, suppliesURL, newSupplyURL, updateSupplyURL, deleteSupplyURL, kuponiURL, novi_kuponiURL, izmeni_kuponURL, izbrisi_kuponURL, proizvodiDobavljacaURL, selectIdDobavljacaURL} from './../config/api';
 import {of} from 'rxjs'
 import { Observable, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -51,7 +51,12 @@ getSuppliers(): Observable<Suppliers[]> {
         catchError(this.handleErrorTwo))
   }
 
-  
+
+  prikaziNaziv(IdDobavljaca: number):Observable<any>{
+    return this.http.get<Suppliers>(`${proizvodiDobavljacaURL}?id=${IdDobavljaca}`).pipe(
+      tap(_=> this.log('Supplier deleted!')),
+        catchError(this.handleErrorTwo))
+  }
 getSupplies():Observable<Supplies[]> {
   return this.http.get<Supplies[]>(suppliesURL).pipe(
     tap(_=> this.log('fetched supplies')),
@@ -63,6 +68,10 @@ createSupply(supplies: Supplies): Observable<Supplies> {
   return this.http.post<Supplies>(newSupplyURL,JSON.stringify(supplies)).pipe(
     tap(_=> this.log('Supply added!')),
       catchError(this.handleErrorTwo))
+}
+
+getIdDobavljaca(ime:string): Observable<number> {
+  return this.http.get<number>(`${selectIdDobavljacaURL}?naziv=${ime}`);
 }
 
 updateSupply(supply: Supplies) {

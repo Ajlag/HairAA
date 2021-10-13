@@ -4,11 +4,11 @@
         <div class="container" style="background:rgba(255,255,255,0.6)">
             <h3 style="text-align:center;padding-top:5%;font-weight:bold">Dodavanje</h3>
             <form  [formGroup]="createForm" novalidate (ngSubmit)="onCreate()">
-                <div class="form-group">
-                    <label >Id dobavljača:</label>
-                    <select class="form-control" formControlName="IdDobavljaca">
-                      <option *ngFor="let s of suppliers" [ngValue]="s.IdDobavljaca">
-                        {{s.IdDobavljaca}}
+                              <div class="form-group">
+                    <label >Naziv dobavljaca:</label>
+                    <select class="form-control" formControlName="nazivD">
+                      <option *ngFor="let s of suppliers" [ngValue]="s.naziv">
+                        {{s.naziv}}
                       </option>
                     </select>
                 </div><br/>

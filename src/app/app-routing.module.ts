@@ -20,6 +20,8 @@ import { ObukaComponent } from './obuka/obuka.component';
 import { ZahtevObukaComponent } from './zahtev-obuka/zahtev-obuka.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AdminZahteviComponent } from './admin-zahtevi/admin-zahtevi.component';
+import { KupovinaComponent } from './kupovina/kupovina.component';
+import { KorpaAdminComponent } from './korpa-admin/korpa-admin.component';
 
 const routes: Routes = [
     {path: 'sign-up-in', component: SignUpInComponent},
@@ -41,7 +43,9 @@ const routes: Routes = [
     {path: 'obuka', component:ObukaComponent},
     {path: 'zahtevObuka', component:ZahtevObukaComponent},
     {path: 'profil', component:ProfileComponent},
-    {path: 'admin-zahtevi', component:AdminZahteviComponent}
+    {path: 'admin-zahtevi', component:AdminZahteviComponent},
+    {path: 'kupovina', component:KupovinaComponent},
+    {path: 'korpa-admin', component:KorpaAdminComponent}
 ];
 
 @NgModule({

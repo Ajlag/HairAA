@@ -30,6 +30,8 @@ import { ObukaComponent } from './obuka/obuka.component';
 import { ZahtevObukaComponent } from './zahtev-obuka/zahtev-obuka.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AdminZahteviComponent } from './admin-zahtevi/admin-zahtevi.component';
+import { KupovinaComponent } from './kupovina/kupovina.component';
+import { KorpaAdminComponent } from './korpa-admin/korpa-admin.component';
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import { AdminZahteviComponent } from './admin-zahtevi/admin-zahtevi.component';
     ObukaComponent,
     ZahtevObukaComponent,
     ProfileComponent,
-    AdminZahteviComponent
+    AdminZahteviComponent,
+    KupovinaComponent,
+    KorpaAdminComponent
   ],
   imports: [
     BrowserModule,

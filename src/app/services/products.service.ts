@@ -3,11 +3,12 @@ import { Product } from '../models/product';
 import { Suppliers } from '../models/supplier';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import {productURL, productIdURL, suppliersURL, newProductURL, updateProductURL, deleteProductURL} from 'src/app/config/api'
+import {productURL, productIdURL, suppliersURL, newProductURL, updateProductURL, deleteProductURL, kuponiURL, kupovinaURL} from 'src/app/config/api'
 import {catchError,tap} from 'rxjs/operators'
 import {of} from 'rxjs'
 import {MessageService} from 'src/app/services/message.service'
 import { map } from 'rxjs/operators';
+import { Kupovina } from '../models/kupovina';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,6 +21,14 @@ export class ProductsService {
     return this.http.get<Product[]>(productURL).pipe(
       tap(_=> this.log('fetched products')),
       catchError(this.handleError<Product[]>('getProducts',[]))
+    );
+  }
+
+  
+  getKupovina() : Observable<Kupovina[]> {
+    return this.http.get<Kupovina[]>(kupovinaURL).pipe(
+      tap(_=> this.log('fetched products')),
+      catchError(this.handleError<Kupovina[]>('getKupovina',[]))
     );
   }
 

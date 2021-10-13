@@ -6,11 +6,10 @@
   </h5>
         <nav class="text">
         <a class="p-2 text-dark lead" routerLink="/about">O nama</a>
-        <a class="p-2 text-dark lead" routerLink="/product-list">Proizvodi</a> 
+        <a *ngIf="getAuth()" class="p-2 text-dark lead" routerLink="/product-list">Proizvodi</a> 
         <a  *ngIf="isMusterija()  && getAuth()"  class="p-2 text-dark lead" routerLink="/usluga">Usluge</a> 
         <a *ngIf="isMusterija()  && getAuth() && !isFriseur()" class="p-2 text-dark lead" routerLink="/mojiZahtevi">Moji zahtevi</a>
           <a *ngIf="isFriseur()  && getAuth() " class="p-2 text-dark lead" routerLink="/profil">Profil</a>
-       
         </nav>
        
         <div  class="d-inline-block" ngbDropdown style="margin-right: 0.3%;">
@@ -45,7 +44,13 @@
         <a *ngIf="!getAuth()" class="btn btn-outline-secondary" routerLink="/sign-up-in">Prijavi se</a>
         </div>
         
-        <div class="cart-container">
+        
+         <div class="cart-container" *ngIf="isAdmin()">
+       <a class="cart-icon" routerLink="/korpa-admin"><span class="mr-2"><fa-icon [icon]="faCart" style="font-size: 150%;"></fa-icon></span>
+      Korpa
+       </a>
+        </div>
+        <div class="cart-container" *ngIf="!isAdmin()">
        <a class="cart-icon" routerLink="/mycart"><span class="mr-2"><fa-icon [icon]="faCart" style="font-size: 150%;"></fa-icon></span>
        Moja korpa
        </a>

@@ -49,3 +49,7 @@ export const Zahtev_obukaURL=`${baseURL}/zahteviObuka.php/zahtevi.php`
 export const odobriZahtev_obukaURL=`${baseURL}/zahteviObuka.php/odobri_zahtev.php`
 export const odbijZahtev_obukaURL=`${baseURL}/zahteviObuka.php/odbijen_zahtev.php`
 export const mojiZahtevi_obukaURL=`${baseURL}/zahteviObuka.php/moji_zahtevi.php`
+export const kupovinaURL=`${baseURL}/supplies/kupovina.php`
+export const proizvodiDobavljacaURL=`${baseURL}/supplies/prikaziProizvode.php`
+
+export const selectIdDobavljacaURL=`${baseURL}/supplies/selectId.php`
