@@ -21,9 +21,12 @@ export class KuponiComponent implements OnInit {
   editForm: FormGroup;
   editLoad: boolean = false;
   createLoad: boolean=false;
+  random=null;
   choices = [
     {value: 1, ind:'DA'}, {value: 0, ind:'NE'}
   ]
+
+  
 
   constructor(private admn: AdminService, private fb: FormBuilder, protected router: Router, private us: UserService) { }
 
@@ -34,6 +37,7 @@ export class KuponiComponent implements OnInit {
     this.initCreateForm();
     this.initEditForm();
     this.getCoupons();
+    this.random = Math.floor(Math.random() * (999 - 100 + 1)) + 100;
   }
 
   
@@ -44,7 +48,7 @@ getCoupons() {
 
 initCreateForm() {
   this.createForm = this.fb.group({
-    kod_kupona: ['',Validators.required],
+    kod_kupona:Math.floor(Math.random() * (999 - 100 + 1)) + 100,
     stanje: [1, Validators.required],
     validan: ['', Validators.required],
     popust: [1, Validators.required]
@@ -80,11 +84,11 @@ this.editForm.patchValue({
 
 onCreate() {
 
-if(Number(this.news.stanje.value)<500 || Number(this.news.popust.value)<5) {
-  alert("Nevalidni podaci.");
-  this.createLoad = false;
-  return;
-}
+// if(Number(this.news.stanje.value)<500 || Number(this.news.popust.value)<5) {
+//   alert("Nevalidni podaci.");
+//   this.createLoad = false;
+//   return;
+// }
 this.subC = true;
   this.createLoad = true;
   if(this.createForm.invalid) {
@@ -92,7 +96,7 @@ this.subC = true;
     this.createLoad = false;
     return;
   }
-  let coupon =  new Kuponi(this.news.kod_kupona.value,this.news.stanje.value,Number(this.news.validan.value),this.news.popust.value);
+  let coupon =  new Kuponi(Math.floor(Math.random() * (999 - 100 + 1)) + 100,this.news.stanje.value,Number(this.news.validan.value),this.news.popust.value);
   this.admn.createCoupon(coupon).subscribe(response => {alert(JSON.stringify("Novi kupon dodat!"))
   console.log(response)
   this.getCoupons();
@@ -132,4 +136,9 @@ this.admn.deleteCoupon(id).subscribe(
     console.log(response);
   }), err => console.log(err);
 }
+
+ randomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
 }

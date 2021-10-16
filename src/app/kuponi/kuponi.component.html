@@ -5,7 +5,7 @@
         <form [formGroup]="createForm" novalidate (ngSubmit)="onCreate()">
             <div class="form-group">
                 <label>Kod kupona:</label>
-                <input class="form-control" formControlName="kod_kupona" type="text">
+                <input class="form-control" formControlName="kod_kupona" type="text" >
             </div>
             <div *ngIf="createForm.controls['kod_kupona'].invalid && (createForm.controls['kod_kupona'].dirty
              || createForm.controls['kod_kupona'].touched)" class="alert alert-danger">
